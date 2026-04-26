@@ -404,7 +404,22 @@ comment
 
 ## Requiring Files
 
-Other languages have `import` or `require`. **FiveM doesn't use `require` for resource files.** You list them in `fxmanifest.lua` and they all load together.
+Other languages auto-import via `import` or `require`. In FiveM, **file loading is primarily done by `fxmanifest.lua`** - you list `client_scripts`, `server_scripts`, `shared_scripts` and the resource loads them all when it starts. So you usually don't need to `require` your own files the way you would in plain Lua.
+
+That said, Lua's `require` **is** available in the FiveM Lua runtime, and ox_lib also ships `lib.require` for clean module-style imports. If you prefer that style:
+
+```lua
+-- shared/config.lua
+return {
+    foo = 'bar',
+}
+
+-- main.lua
+local config = require 'shared.config'    -- or: lib.require('shared.config')
+print(config.foo)                         -- "bar"
+```
+
+Both patterns work. The `fxmanifest` + shared globals approach is the dominant community convention you'll see in 95% of resources, but module-style `require` is fully supported and keeps the global namespace clean. Pick whichever you like.
 
 Covered in lesson [`04-resources-and-fxmanifest.md`](04-resources-and-fxmanifest.md).
 

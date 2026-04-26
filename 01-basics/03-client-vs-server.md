@@ -118,6 +118,26 @@ Config.Shop = {
 
 Then in `client/main.lua` and `server/main.lua`, you can both do `print(Config.Shop.coords)`.
 
+**Wait, didn't lesson 02 say "always local"?** Good eye. `Config = {}` is technically a global - and the "always local" rule from the previous lesson still applies for **regular variables**. The exception here is FiveM-specific: each resource runs in its own isolated Lua state, so a "global" inside `my_resource` is **only** visible to that resource - it does NOT leak to other resources on the server. That's why the community convention of a shared `Config` table is safe in practice.
+
+If you'd rather keep things strict and avoid globals entirely, you can use module-style imports instead:
+
+```lua
+-- shared/config.lua
+return {
+    Shop = {
+        coords = vector3(100, 200, 30),
+        items = { 'bread', 'water' },
+    },
+}
+
+-- client/main.lua or server/main.lua
+local Config = require 'shared.config'    -- or lib.require('shared.config')
+print(Config.Shop.coords)
+```
+
+Both styles work. The global `Config` pattern is the dominant convention, but `require` is fully supported.
+
 **Beware:** putting prices in shared config means clients can read them. That's usually fine for display - but use server-side config for **authoritative** prices, formulas, and discount logic.
 
 ---
