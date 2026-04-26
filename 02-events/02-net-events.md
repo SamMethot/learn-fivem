@@ -322,7 +322,7 @@ This makes events **grep-able**. Search the whole server folder for `myarmory:se
 - [RegisterNetEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RegisterNetEvent/)
 - [TriggerServerEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerServerEvent/)
 - [TriggerClientEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerClientEvent/)
-- [TriggerLatentClientEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerLatentClientEvent/)
+- [TriggerLatentClientEvent](https://docs.fivem.net/docs/scripting-manual/working-with-events/triggering-events/#triggering-client-events)
 - [State Bags](https://docs.fivem.net/docs/scripting-manual/networking/state-bags/) - alternative for continuous sync
 
 ---

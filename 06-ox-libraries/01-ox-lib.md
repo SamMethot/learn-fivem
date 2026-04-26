@@ -409,7 +409,7 @@ local banned = lib.isPlayerBanned(src)                          -- check ban sta
 - [ox_lib docs (canonical)](https://coxdocs.dev/ox_lib)
 - [ox_lib GitHub](https://github.com/communityox/ox_lib) - source code
 - [Notify module](https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify)
-- [Callback module](https://coxdocs.dev/ox_lib/Modules/Callback)
+- [Callback module (server)](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Server) and [(client)](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Client)
 - [Cache module](https://coxdocs.dev/ox_lib/Modules/Cache/Client)
 - [Points module source](https://github.com/communityox/ox_lib/tree/master/imports/points)
 - [Zones module](https://coxdocs.dev/ox_lib/Modules/Zones/Shared)
