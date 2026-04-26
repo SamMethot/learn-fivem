@@ -127,7 +127,7 @@ Skip if you do not care.
 
 Once public, post in:
 
-- [ ] FiveM forum: <https://forum.cfx.re/c/development/scripts/9>
+- [ ] FiveM forum: <https://forum.cfx.re/c/development/releases/7>
 - [ ] Cfx.re Discord (`#showcase` or similar)
 - [ ] Your own Discord / Twitter / personal channels
 - [ ] r/FiveM on Reddit
