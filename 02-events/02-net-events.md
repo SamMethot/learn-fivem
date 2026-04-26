@@ -6,7 +6,7 @@ A **net event** is an event that crosses the network. Client → server, server 
 
 This is how a player's "buy bread" click reaches your database, and how the server's "you got bread" notification reaches the player's screen.
 
-**Every net event is an attack surface.** Players can fire any registered net event with any arguments. The next lesson is entirely about defending against that — for now, just learn how to fire and listen.
+**Every net event is an attack surface.** Players can fire any registered net event with any arguments. The next lesson is entirely about defending against that - for now, just learn how to fire and listen.
 
 ---
 
@@ -100,7 +100,7 @@ end)
 
 Both work. Modern code uses option A.
 
-**Crucial security detail:** if you only call `AddEventHandler('shop:buy', ...)` **without** `RegisterNetEvent`, clients can NOT trigger this event remotely. The server refuses to route network messages to unregistered events. This is a **feature**, not a bug — it's how you make events server-internal-only.
+**Crucial security detail:** if you only call `AddEventHandler('shop:buy', ...)` **without** `RegisterNetEvent`, clients can NOT trigger this event remotely. The server refuses to route network messages to unregistered events. This is a **feature**, not a bug - it's how you make events server-internal-only.
 
 So the rule: only call `RegisterNetEvent` for events that **actually need to be triggered from the other side**. Server-internal logic = local event, no `RegisterNetEvent`.
 
@@ -114,7 +114,7 @@ When a server net event handler runs, `source` is a magic global = the server ID
 RegisterNetEvent('shop:buy', function(item)
     local src = source                  -- ← FIRST LINE, ALWAYS
     -- ↑ "source" can change if your handler does another event call or yields.
-    -- "src" is a local — it never changes. Use src for the rest of the function.
+    -- "src" is a local - it never changes. Use src for the rest of the function.
 end)
 ```
 
@@ -129,7 +129,7 @@ Net events can carry: `numbers`, `strings`, `booleans`, `tables` (nested OK), `n
 There's a **rough size limit ~100KB per event payload** (FiveM's network buffer).
 
 ```lua
--- complex nested table — works fine
+-- complex nested table - works fine
 TriggerServerEvent('inventory:bulkUpdate', {
     add = { bread = 5, water = 2 },
     remove = { bandage = 1 },
@@ -141,7 +141,7 @@ If you need to send something bigger (huge data dump, initial world state), use 
 
 ---
 
-## Security — A Reminder, Then The Deep Dive
+## Security - A Reminder, Then The Deep Dive
 
 **Every `RegisterNetEvent` is a public API.** Players can open their console and do:
 
@@ -152,7 +152,7 @@ TriggerServerEvent('shop:buy', 'super_rare_item', 999999)
 
 If your handler doesn't validate `item` (whitelist) and `qty` (range check), they get 999,999 free items.
 
-Validation rules — types, ranges, whitelists, distance checks, locks, atomic DB ops — all live in the next file: [`03-event-security.md`](03-event-security.md). Read it. Twice.
+Validation rules - types, ranges, whitelists, distance checks, locks, atomic DB ops - all live in the next file: [`03-event-security.md`](03-event-security.md). Read it. Twice.
 
 ---
 
@@ -172,13 +172,13 @@ TriggerClientEvent(eventName, -1, ...)
 TriggerEvent(eventName, ...)
 ```
 
-**`TriggerEvent` does NOT cross the network.** Most common newbie mistake: call `TriggerEvent` on the server, expect the client to receive it. Does nothing — the client is on a different side. Use `TriggerClientEvent` from the server.
+**`TriggerEvent` does NOT cross the network.** Most common newbie mistake: call `TriggerEvent` on the server, expect the client to receive it. Does nothing - the client is on a different side. Use `TriggerClientEvent` from the server.
 
 ---
 
 ## Latent Events (For Big Data)
 
-If you need to send a payload bigger than ~100KB, or your client is on a slow connection, use **latent events** — they spread the data over multiple packets:
+If you need to send a payload bigger than ~100KB, or your client is on a slow connection, use **latent events** - they spread the data over multiple packets:
 
 ```lua
 -- server side: stream a huge table to one player at 50 KB/sec
@@ -186,7 +186,7 @@ TriggerLatentClientEvent('bigData:sync', targetId, 50000, hugeTable)
 -- ↑ 50000 = bytes-per-second rate limit
 ```
 
-Use case: initial state dump on player join. **Don't use latent for per-frame updates** — they're for one-shot big sends.
+Use case: initial state dump on player join. **Don't use latent for per-frame updates** - they're for one-shot big sends.
 
 There's a server equivalent: `TriggerLatentServerEvent`.
 
@@ -225,7 +225,7 @@ So if you do:
 -- WRONG
 -- client side
 local veh = GetVehiclePedIsIn(PlayerPedId(), false)        -- this is a CLIENT handle (e.g., 256)
-TriggerServerEvent('impound', veh)                         -- server gets "256" — useless!
+TriggerServerEvent('impound', veh)                         -- server gets "256" - useless!
 ```
 
 The server's "256" is some completely different entity (or nothing).
@@ -266,7 +266,7 @@ If you're on the server and want server code to react, use `TriggerEvent` (local
 
 ---
 
-## Performance — Don't Spam Net Events
+## Performance - Don't Spam Net Events
 
 Don't fire a net event every frame. The network gets hammered. The server tick budget gets eaten.
 
@@ -281,7 +281,7 @@ CreateThread(function()
 end)
 ```
 
-That's 60 server-bound packets per second per player. With 64 players, 3,840 packets per second just for "where am I" — and FiveM **already syncs positions** via OneSync. You're reinventing the wheel poorly.
+That's 60 server-bound packets per second per player. With 64 players, 3,840 packets per second just for "where am I" - and FiveM **already syncs positions** via OneSync. You're reinventing the wheel poorly.
 
 **Rule: fire net events on real state changes, not on a timer.**
 
@@ -306,13 +306,13 @@ This makes events **grep-able**. Search the whole server folder for `myarmory:se
 
 ## TL;DR
 
-- `TriggerServerEvent(name, ...)` — client → server
-- `TriggerClientEvent(name, playerId_or_-1, ...)` — server → client(s)
-- `RegisterNetEvent(name, fn)` on the receiving side — always
+- `TriggerServerEvent(name, ...)` - client → server
+- `TriggerClientEvent(name, playerId_or_-1, ...)` - server → client(s)
+- `RegisterNetEvent(name, fn)` on the receiving side - always
 - `local src = source` is the first line of every server handler
 - Pass NetworkIDs, not entity handles, across the network
-- Every net event is attack surface — validate everything (next lesson)
-- Don't spam — fire on state change, not on a timer
+- Every net event is attack surface - validate everything (next lesson)
+- Don't spam - fire on state change, not on a timer
 
 ---
 
@@ -323,7 +323,7 @@ This makes events **grep-able**. Search the whole server folder for `myarmory:se
 - [TriggerServerEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerServerEvent/)
 - [TriggerClientEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerClientEvent/)
 - [TriggerLatentClientEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerLatentClientEvent/)
-- [State Bags](https://docs.fivem.net/docs/scripting-manual/networking/state-bags/) — alternative for continuous sync
+- [State Bags](https://docs.fivem.net/docs/scripting-manual/networking/state-bags/) - alternative for continuous sync
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Plain English
 
-A **native** is a function from GTA V's game engine that FiveM exposes to your scripts. Functions like `SpawnVehicle`, `GetEntityCoords`, `SetPedArmor`, `DrawText` — Rockstar wrote thousands of them, FiveM lets you call them from Lua.
+A **native** is a function from GTA V's game engine that FiveM exposes to your scripts. Functions like `SpawnVehicle`, `GetEntityCoords`, `SetPedArmor`, `DrawText` - Rockstar wrote thousands of them, FiveM lets you call them from Lua.
 
 If you're going to make anything visible in the game world (cars, peds, animations, UI overlays), you'll be calling natives constantly.
 
@@ -32,14 +32,14 @@ get_entity_coords()    -- WRONG, doesn't exist
 
 Burn it in. Common prefixes:
 
-- `Get*` — read state (`GetEntityCoords`, `GetPlayerName`)
-- `Set*` — change state (`SetEntityCoords`, `SetPedArmour`)
-- `Is*` — boolean check (`IsPedDeadOrDying`, `IsControlPressed`)
-- `Has*` — has-it-loaded check (`HasModelLoaded`)
-- `Create*` / `Spawn*` — make a new entity (`CreateVehicle`, `CreatePed`)
-- `Delete*` / `Remove*` — destroy it (`DeleteEntity`, `RemoveBlip`)
-- `Request*` — start streaming an asset (`RequestModel`, `RequestAnimDict`)
-- `Draw*` — render to screen this frame (`DrawText`, `DrawMarker`)
+- `Get*` - read state (`GetEntityCoords`, `GetPlayerName`)
+- `Set*` - change state (`SetEntityCoords`, `SetPedArmour`)
+- `Is*` - boolean check (`IsPedDeadOrDying`, `IsControlPressed`)
+- `Has*` - has-it-loaded check (`HasModelLoaded`)
+- `Create*` / `Spawn*` - make a new entity (`CreateVehicle`, `CreatePed`)
+- `Delete*` / `Remove*` - destroy it (`DeleteEntity`, `RemoveBlip`)
+- `Request*` - start streaming an asset (`RequestModel`, `RequestAnimDict`)
+- `Draw*` - render to screen this frame (`DrawText`, `DrawMarker`)
 
 ---
 
@@ -63,10 +63,10 @@ Calling a native on the wrong side errors silently or no-ops. **Always verify pe
 
 Two ways:
 
-1. **The official native database** → [docs.fivem.net/natives](https://docs.fivem.net/natives/) — searchable, filterable by side, has full signatures
-2. **VS Code with the cfxlua extension** — autocomplete + signature help right in your editor → [overextended.cfxlua-vscode](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode)
+1. **The official native database** → [docs.fivem.net/natives](https://docs.fivem.net/natives/) - searchable, filterable by side, has full signatures
+2. **VS Code with the cfxlua extension** - autocomplete + signature help right in your editor → [overextended.cfxlua-vscode](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode)
 
-Always check argument order before writing — many natives have 5+ arguments and the order matters.
+Always check argument order before writing - many natives have 5+ arguments and the order matters.
 
 ---
 
@@ -74,16 +74,16 @@ Always check argument order before writing — many natives have 5+ arguments an
 
 Lua types map to FiveM native types like this:
 
-- `number` — int, float, **and entity handles** (Ped, Vehicle, Object, Player). Handles are just numbers.
-- `string` — char* in the native signature
-- `boolean` — BOOL
-- `vector3(x, y, z)` — sometimes natives take a vector3, sometimes 3 separate floats. Check signature.
+- `number` - int, float, **and entity handles** (Ped, Vehicle, Object, Player). Handles are just numbers.
+- `string` - char* in the native signature
+- `boolean` - BOOL
+- `vector3(x, y, z)` - sometimes natives take a vector3, sometimes 3 separate floats. Check signature.
 
-Entity handles are simple integers like `1`, `42`, `512`. They're just **references** the engine uses to identify the actual entity — the data isn't in the number, the engine looks it up.
+Entity handles are simple integers like `1`, `42`, `512`. They're just **references** the engine uses to identify the actual entity - the data isn't in the number, the engine looks it up.
 
 ---
 
-## Hash vs String — Models, Anim Dicts, Weapons
+## Hash vs String - Models, Anim Dicts, Weapons
 
 Some natives want a **hash** (a number derived from a string). FiveM gives you three ways to produce one:
 
@@ -106,7 +106,7 @@ When the native signature says `Hash modelHash`, pass a hash. When it says `char
 
 ## The Request / Has / Use Pattern
 
-Models, anims, particle effects, audio banks — all stream into memory on demand. The pattern is always:
+Models, anims, particle effects, audio banks - all stream into memory on demand. The pattern is always:
 
 ```lua
 local model = `adder`                                              -- compute hash at load time
@@ -238,7 +238,7 @@ Find a working pattern, adapt to your case.
 ## TL;DR
 
 - Natives = GTA V's API exposed via FiveM. PascalCase names.
-- Some natives are client-only, server-only, or both — check docs.
+- Some natives are client-only, server-only, or both - check docs.
 - **Request → Has → Use** pattern for streamed assets. Always release with `SetModelAsNoLongerNeeded`.
 - Use `` `backticks` `` for model/anim hashes (with `lua54 'yes'`).
 - Always cleanup created entities on resource stop.
@@ -247,10 +247,10 @@ Find a working pattern, adapt to your case.
 
 ## Sources
 
-- [Native Reference (searchable)](https://docs.fivem.net/natives/) — official database
+- [Native Reference (searchable)](https://docs.fivem.net/natives/) - official database
 - [Scripting Reference Overview](https://docs.fivem.net/docs/scripting-reference/)
 - [Streaming docs (assets)](https://docs.fivem.net/docs/scripting-manual/working-with-data-files/)
-- [VS Code cfxlua extension](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode) — autocomplete
+- [VS Code cfxlua extension](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode) - autocomplete
 
 ---
 

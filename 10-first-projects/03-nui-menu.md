@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build an **HTML-based menu** (not an `ox_lib` context menu — actual NUI). Purpose: learn the Lua ↔ NUI round trip, focus handling, and the visibility pattern.
+Build an **HTML-based menu** (not an `ox_lib` context menu - actual NUI). Purpose: learn the Lua ↔ NUI round trip, focus handling, and the visibility pattern.
 
 Scope: `/garage` opens a list of vehicles; clicking one spawns the car next to the player. Close button + ESC support.
 
@@ -83,7 +83,7 @@ html, body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: transparent;            /* CRITICAL — without this, black screen over the game */
+    background: transparent;            /* CRITICAL - without this, black screen over the game */
     font-family: 'Segoe UI', sans-serif;
 }
 
@@ -97,7 +97,7 @@ html, body {
 }
 
 .hidden {
-    visibility: hidden;                 /* NOT display:none — keep listeners alive */
+    visibility: hidden;                 /* NOT display:none - keep listeners alive */
 }
 
 .panel {
@@ -172,7 +172,7 @@ const root = document.getElementById('root');
 const listEl = document.getElementById('vehicle-list');
 const closeBtn = document.getElementById('close-btn');
 
-// helper: send a callback to Lua via fetch (with try/catch — CEF can hiccup)
+// helper: send a callback to Lua via fetch (with try/catch - CEF can hiccup)
 async function fetchNui(callback, data) {
     try {
         const res = await fetch(`https://${GetParentResourceName()}/${callback}`, {
@@ -268,13 +268,13 @@ RegisterCommand('garage', function()
     openUI()
 end, false)
 
--- ↓ NUI sent "close" — release focus, hide UI
+-- ↓ NUI sent "close" - release focus, hide UI
 RegisterNUICallback('close', function(_, cb)
     closeUI()
     cb('ok')                                                    -- mandatory
 end)
 
--- ↓ NUI sent "spawn" — spawn the chosen vehicle
+-- ↓ NUI sent "spawn" - spawn the chosen vehicle
 RegisterNUICallback('spawn', function(data, cb)
     closeUI()                                                   -- close menu first
 
@@ -412,11 +412,11 @@ Passes.
 
 Each is its own little project:
 
-1. **React + Vite** — convert `app.js` to `App.tsx`. Follow [`07-nui/02-react-nui.md`](../07-nui/02-react-nui.md).
-2. **Real DB-backed garage** — query `player_vehicles` for the logged-in player.
-3. **Store/retrieve** — track if a vehicle is "stored" or "out". Only allow spawn if stored. On `/store`, mark it stored and delete the entity.
-4. **Categories** — tabs for Cars / Bikes / Planes / Helis based on `GetVehicleClass`.
-5. **Search** — input field that filters the list by label.
+1. **React + Vite** - convert `app.js` to `App.tsx`. Follow [`07-nui/02-react-nui.md`](../07-nui/02-react-nui.md).
+2. **Real DB-backed garage** - query `player_vehicles` for the logged-in player.
+3. **Store/retrieve** - track if a vehicle is "stored" or "out". Only allow spawn if stored. On `/store`, mark it stored and delete the entity.
+4. **Categories** - tabs for Cars / Bikes / Planes / Helis based on `GetVehicleClass`.
+5. **Search** - input field that filters the list by label.
 
 ---
 
@@ -446,4 +446,4 @@ You've now built three resources that touch every major FiveM concept. Go build 
 
 **You're done with the course.** Back to [`INDEX.md`](../INDEX.md).
 
-Build something. Break something. Read more code. The fastest way past the beginner phase is to ship a real resource — even a tiny one — and iterate it on a real server.
+Build something. Break something. Read more code. The fastest way past the beginner phase is to ship a real resource - even a tiny one - and iterate it on a real server.

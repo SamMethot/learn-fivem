@@ -2,13 +2,13 @@
 
 ## Plain English
 
-Lua is a small, fast scripting language. You can learn enough to read FiveM code in 30 minutes. This page is the cheat sheet — read it once, come back when you forget syntax.
+Lua is a small, fast scripting language. You can learn enough to read FiveM code in 30 minutes. This page is the cheat sheet - read it once, come back when you forget syntax.
 
 If you've used JavaScript or Python, **most things will feel familiar**. The big traps for newcomers:
 - **Arrays start at `1`, not `0`**
 - **`~=` means "not equal"** (not `!=`)
 - **`and` / `or` instead of `&&` / `||`**
-- **Only `false` and `nil` are falsy** — `0`, `""`, and empty tables are all truthy
+- **Only `false` and `nil` are falsy** - `0`, `""`, and empty tables are all truthy
 
 Burn those four in.
 
@@ -18,7 +18,7 @@ Burn those four in.
 
 ```lua
 -- "local" means this variable only exists inside this file or block
--- always use "local" — without it, you create a global, which leaks across all your code
+-- always use "local" - without it, you create a global, which leaks across all your code
 local name = 'Alex'           -- a string
 local age = 25                -- a number
 local isAdmin = true          -- a boolean
@@ -36,7 +36,7 @@ Lua has 6 types you'll actually use:
 | Type | Example | Notes |
 |------|---------|-------|
 | `string` | `'hi'` or `"hi"` | Single or double quotes both work |
-| `number` | `42`, `3.14` | No separate int/float — all numbers |
+| `number` | `42`, `3.14` | No separate int/float - all numbers |
 | `boolean` | `true`, `false` | |
 | `nil` | `nil` | "no value" |
 | `table` | `{1, 2, 3}` or `{name = 'Sam'}` | Lua's everything-data-structure |
@@ -79,10 +79,10 @@ Common string operations (called as methods using `:`):
 local s = 'Hello World'
 s:lower()          -- "hello world"
 s:upper()          -- "HELLO WORLD"
-s:sub(1, 5)        -- "Hello" — substring from char 1 to 5 (1-indexed!)
-s:find('World')    -- 7, 11 — start and end indexes of the match
-s:gsub('o', '0')   -- "Hell0 W0rld", 2 — global substitute, returns new string + count
-#s                 -- 11 — length
+s:sub(1, 5)        -- "Hello" - substring from char 1 to 5 (1-indexed!)
+s:find('World')    -- 7, 11 - start and end indexes of the match
+s:gsub('o', '0')   -- "Hell0 W0rld", 2 - global substitute, returns new string + count
+#s                 -- 11 - length
 ```
 
 ---
@@ -106,7 +106,7 @@ count = count + 5      -- not "count += 5"
 
 ---
 
-## Tables — The One Data Structure
+## Tables - The One Data Structure
 
 Tables are arrays + dictionaries + objects all in one. **Everything in Lua you'd build with a class, you build with a table.**
 
@@ -176,7 +176,7 @@ end
 -- iterate a dictionary with pairs (key, value)
 local player = { name = 'Sam', cash = 500 }
 for key, value in pairs(player) do
-    print(key, value)   -- prints in any order — pairs doesn't guarantee order
+    print(key, value)   -- prints in any order - pairs doesn't guarantee order
 end
 
 -- while loop: runs as long as the condition is true
@@ -191,8 +191,8 @@ until done
 ```
 
 **`ipairs` vs `pairs`:**
-- `ipairs(t)` — only walks integer keys 1, 2, 3..., stops at the first `nil`. Use for arrays.
-- `pairs(t)` — walks every key, in undefined order. Use for dictionaries.
+- `ipairs(t)` - only walks integer keys 1, 2, 3..., stops at the first `nil`. Use for arrays.
+- `pairs(t)` - walks every key, in undefined order. Use for dictionaries.
 
 ---
 
@@ -209,7 +209,7 @@ else
 end
 ```
 
-**Critical Lua quirk:** only `false` and `nil` are falsy. Everything else — including `0` and `""` — is truthy.
+**Critical Lua quirk:** only `false` and `nil` are falsy. Everything else - including `0` and `""` - is truthy.
 
 ```lua
 if 0 then print('yes') end       -- this prints 'yes'!
@@ -412,9 +412,9 @@ Covered in lesson [`04-resources-and-fxmanifest.md`](04-resources-and-fxmanifest
 
 ## TL;DR
 
-- Always `local` — never leave variables unscoped
+- Always `local` - never leave variables unscoped
 - Arrays start at **1**, not 0
-- Only `false` and `nil` are falsy — `0` and `""` are truthy
+- Only `false` and `nil` are falsy - `0` and `""` are truthy
 - Tables are everything (arrays, dicts, objects)
 - `..` joins strings, `~=` is "not equal"
 - `pairs` for dicts, `ipairs` for arrays
@@ -424,10 +424,10 @@ Covered in lesson [`04-resources-and-fxmanifest.md`](04-resources-and-fxmanifest
 
 ## Sources
 
-- [Lua 5.4 Reference Manual](https://www.lua.org/manual/5.4/) — the official spec
-- [Programming in Lua (free book)](https://www.lua.org/pil/contents.html) — the textbook, written by Lua's creator
-- [FiveM Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) — Lua-specific FiveM functions
-- [Learn X in Y Minutes — Lua](https://learnxinyminutes.com/docs/lua/) — fast cheat-sheet style intro
+- [Lua 5.4 Reference Manual](https://www.lua.org/manual/5.4/) - the official spec
+- [Programming in Lua (free book)](https://www.lua.org/pil/contents.html) - the textbook, written by Lua's creator
+- [FiveM Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) - Lua-specific FiveM functions
+- [Learn X in Y Minutes - Lua](https://learnxinyminutes.com/docs/lua/) - fast cheat-sheet style intro
 
 ---
 

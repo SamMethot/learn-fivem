@@ -2,9 +2,9 @@
 
 ## Plain English
 
-**ox_target** = the "third-eye" interaction system. Player holds a key (default LEFT ALT), a crosshair appears, and world objects/peds/vehicles get highlighted with clickable options. It's the modern standard for "press to interact" in FiveM — way cleaner than rolling your own "press E within 1.5m" logic.
+**ox_target** = the "third-eye" interaction system. Player holds a key (default LEFT ALT), a crosshair appears, and world objects/peds/vehicles get highlighted with clickable options. It's the modern standard for "press to interact" in FiveM - way cleaner than rolling your own "press E within 1.5m" logic.
 
-If you've played any modern QBox/QBCore server, you've used this — clicking on doors, ATMs, NPCs, vehicle trunks. That's ox_target.
+If you've played any modern QBox/QBCore server, you've used this - clicking on doors, ATMs, NPCs, vehicle trunks. That's ox_target.
 
 ---
 
@@ -80,7 +80,7 @@ exports.ox_target:addModel({ `prop_atm_01`, `prop_atm_02`, `prop_atm_03` }, {
 })
 ```
 
-You don't need to know where every ATM in the map is — ox_target finds them by model hash automatically.
+You don't need to know where every ATM in the map is - ox_target finds them by model hash automatically.
 
 ---
 
@@ -112,7 +112,7 @@ exports.ox_target:addGlobalVehicle({
 
 ---
 
-## Zone Targets — Pin To A Coordinate
+## Zone Targets - Pin To A Coordinate
 
 When there's no entity, just a spot in the world (a counter, a wall safe, a parking spot):
 
@@ -153,7 +153,7 @@ exports.ox_target:removeZone(zoneId)
 
 ---
 
-## Bone Targets — Specific Vehicle Parts
+## Bone Targets - Specific Vehicle Parts
 
 Target the trunk, hood, doors, windows of a car:
 
@@ -173,17 +173,17 @@ exports.ox_target:addGlobalVehicle({
 ```
 
 Common bone names:
-- `boot` — trunk
-- `bonnet` — hood
-- `door_dside_f` — driver's front door
-- `door_dside_r` — driver's rear door
-- `door_pside_f` — passenger front
-- `door_pside_r` — passenger rear
-- `window_lf` — front-left window
+- `boot` - trunk
+- `bonnet` - hood
+- `door_dside_f` - driver's front door
+- `door_dside_r` - driver's rear door
+- `door_pside_f` - passenger front
+- `door_pside_r` - passenger rear
+- `window_lf` - front-left window
 
 ---
 
-## `canInteract` — Dynamic Visibility
+## `canInteract` - Dynamic Visibility
 
 Hide an option based on runtime state:
 
@@ -199,7 +199,7 @@ Returns `true` → show. `false` → hide.
 
 ---
 
-## `groups` — Job Filter (Shorthand)
+## `groups` - Job Filter (Shorthand)
 
 For a simple job check, `groups` is cleaner:
 
@@ -211,7 +211,7 @@ groups = { police = 2 }                                          -- cops grade 2
 
 ---
 
-## `items` — Require An Item
+## `items` - Require An Item
 
 Only show the option if the player has a specific item:
 
@@ -225,7 +225,7 @@ ox_target checks the player's inventory automatically.
 
 ---
 
-## `distance` — Override Max Range
+## `distance` - Override Max Range
 
 ```lua
 distance = 1.5                                                   -- 1.5m max. default = 2.0
@@ -233,7 +233,7 @@ distance = 1.5                                                   -- 1.5m max. de
 
 ---
 
-## Full Example — ATM With Two Options
+## Full Example - ATM With Two Options
 
 ```lua
 exports.ox_target:addModel({ `prop_atm_01`, `prop_atm_02`, `prop_atm_03`, `prop_fleeca_atm` }, {
@@ -264,7 +264,7 @@ exports.ox_target:addModel({ `prop_atm_01`, `prop_atm_02`, `prop_atm_03`, `prop_
 
 ## ox_target Is Client Only
 
-The whole library runs on the client. **Permission-sensitive actions** (taking money, giving items) still need `TriggerServerEvent` and full server-side validation. The client UI is just a fancy way to fire the event — never trust that the click actually came from a legitimate context.
+The whole library runs on the client. **Permission-sensitive actions** (taking money, giving items) still need `TriggerServerEvent` and full server-side validation. The client UI is just a fancy way to fire the event - never trust that the click actually came from a legitimate context.
 
 ---
 
@@ -286,11 +286,11 @@ Without this, restarting the resource leaves duplicate options floating around u
 
 ## TL;DR
 
-- `dependency 'ox_target'`. Use `exports.ox_target:*` — no shared_script.
+- `dependency 'ox_target'`. Use `exports.ox_target:*` - no shared_script.
 - `addLocalEntity`, `addModel`, `addGlobalVehicle`, `addBoxZone`, `addSphereZone`
 - `canInteract`, `groups`, `items`, `distance`, `bones` for filtering
 - Always cleanup on `onResourceStop`
-- Client side only — server still validates the action
+- Client side only - server still validates the action
 
 ---
 
@@ -298,7 +298,7 @@ Without this, restarting the resource leaves duplicate options floating around u
 
 - [ox_target docs](https://coxdocs.dev/ox_target)
 - [ox_target GitHub](https://github.com/communityox/ox_target)
-- [Vehicle bone names](https://docs.fivem.net/docs/game-references/bones/) — full list
+- [Vehicle bone names](https://docs.fivem.net/docs/game-references/bones/) - full list
 
 ---
 

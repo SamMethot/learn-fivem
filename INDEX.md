@@ -1,41 +1,41 @@
-# FiveM School — Full Index
+# FiveM School - Full Index
 
 Master navigation. Three reading paths below depending on where you're starting from.
 
 ---
 
-## Path 1 — Total Beginner (Recommended)
+## Path 1 - Total Beginner (Recommended)
 
 Read in order. ~2-4 hours of reading + as long as you want for the projects.
 
-1. [`01-basics/01-what-is-fivem.md`](01-basics/01-what-is-fivem.md) — what FiveM actually is
-2. [`01-basics/02-lua-crash-course.md`](01-basics/02-lua-crash-course.md) — Lua syntax in 30 min
-3. [`01-basics/03-client-vs-server.md`](01-basics/03-client-vs-server.md) — the most important concept
-4. [`01-basics/04-resources-and-fxmanifest.md`](01-basics/04-resources-and-fxmanifest.md) — anatomy of a resource
-5. [`02-events/01-local-events.md`](02-events/01-local-events.md) — how scripts talk
-6. [`02-events/02-net-events.md`](02-events/02-net-events.md) — across the network
-7. [`02-events/03-event-security.md`](02-events/03-event-security.md) — **read twice**
-8. [`02-events/04-callbacks.md`](02-events/04-callbacks.md) — request/response pattern
-9. [`03-natives/01-what-are-natives.md`](03-natives/01-what-are-natives.md) — the GTA V API
-10. [`03-natives/02-common-natives.md`](03-natives/02-common-natives.md) — cheat sheet
-11. [`04-database/01-oxmysql-basics.md`](04-database/01-oxmysql-basics.md) — talk to MySQL
-12. [`04-database/02-queries-and-security.md`](04-database/02-queries-and-security.md) — don't get SQL-injected
-13. [`05-frameworks/01-qbox-basics.md`](05-frameworks/01-qbox-basics.md) — player object, jobs, money
-14. [`06-ox-libraries/01-ox-lib.md`](06-ox-libraries/01-ox-lib.md) — the swiss-army library
-15. [`06-ox-libraries/02-ox-target.md`](06-ox-libraries/02-ox-target.md) — third-eye targeting
-16. [`06-ox-libraries/03-inventories.md`](06-ox-libraries/03-inventories.md) — items
-17. [`07-nui/01-nui-basics.md`](07-nui/01-nui-basics.md) — HTML UI inside the game
-18. [`07-nui/02-react-nui.md`](07-nui/02-react-nui.md) — production NUI with React
-19. [`08-security/01-security-checklist.md`](08-security/01-security-checklist.md) — the audit list
-20. [`09-performance/01-threads-and-waits.md`](09-performance/01-threads-and-waits.md) — don't tank FPS
-21. [`09-performance/02-optimization-patterns.md`](09-performance/02-optimization-patterns.md) — make it fast
-22. [`10-first-projects/01-hello-resource.md`](10-first-projects/01-hello-resource.md) — your first resource
-23. [`10-first-projects/02-shop.md`](10-first-projects/02-shop.md) — full shop with security
-24. [`10-first-projects/03-nui-menu.md`](10-first-projects/03-nui-menu.md) — HTML menu
+1. [`01-basics/01-what-is-fivem.md`](01-basics/01-what-is-fivem.md) - what FiveM actually is
+2. [`01-basics/02-lua-crash-course.md`](01-basics/02-lua-crash-course.md) - Lua syntax in 30 min
+3. [`01-basics/03-client-vs-server.md`](01-basics/03-client-vs-server.md) - the most important concept
+4. [`01-basics/04-resources-and-fxmanifest.md`](01-basics/04-resources-and-fxmanifest.md) - anatomy of a resource
+5. [`02-events/01-local-events.md`](02-events/01-local-events.md) - how scripts talk
+6. [`02-events/02-net-events.md`](02-events/02-net-events.md) - across the network
+7. [`02-events/03-event-security.md`](02-events/03-event-security.md) - **read twice**
+8. [`02-events/04-callbacks.md`](02-events/04-callbacks.md) - request/response pattern
+9. [`03-natives/01-what-are-natives.md`](03-natives/01-what-are-natives.md) - the GTA V API
+10. [`03-natives/02-common-natives.md`](03-natives/02-common-natives.md) - cheat sheet
+11. [`04-database/01-oxmysql-basics.md`](04-database/01-oxmysql-basics.md) - talk to MySQL
+12. [`04-database/02-queries-and-security.md`](04-database/02-queries-and-security.md) - don't get SQL-injected
+13. [`05-frameworks/01-qbox-basics.md`](05-frameworks/01-qbox-basics.md) - player object, jobs, money
+14. [`06-ox-libraries/01-ox-lib.md`](06-ox-libraries/01-ox-lib.md) - the swiss-army library
+15. [`06-ox-libraries/02-ox-target.md`](06-ox-libraries/02-ox-target.md) - third-eye targeting
+16. [`06-ox-libraries/03-inventories.md`](06-ox-libraries/03-inventories.md) - items
+17. [`07-nui/01-nui-basics.md`](07-nui/01-nui-basics.md) - HTML UI inside the game
+18. [`07-nui/02-react-nui.md`](07-nui/02-react-nui.md) - production NUI with React
+19. [`08-security/01-security-checklist.md`](08-security/01-security-checklist.md) - the audit list
+20. [`09-performance/01-threads-and-waits.md`](09-performance/01-threads-and-waits.md) - don't tank FPS
+21. [`09-performance/02-optimization-patterns.md`](09-performance/02-optimization-patterns.md) - make it fast
+22. [`10-first-projects/01-hello-resource.md`](10-first-projects/01-hello-resource.md) - your first resource
+23. [`10-first-projects/02-shop.md`](10-first-projects/02-shop.md) - full shop with security
+24. [`10-first-projects/03-nui-menu.md`](10-first-projects/03-nui-menu.md) - HTML menu
 
 ---
 
-## Path 2 — "I Know Some Stuff Already"
+## Path 2 - "I Know Some Stuff Already"
 
 Skip ahead based on what you already know:
 
@@ -49,7 +49,7 @@ Skip ahead based on what you already know:
 
 ---
 
-## Path 3 — Reference (Skim When Stuck)
+## Path 3 - Reference (Skim When Stuck)
 
 Use as a glossary of patterns. Pick the lesson that covers the thing you're searching for:
 
@@ -140,38 +140,38 @@ Build something real. Three end-to-end projects.
 Bookmark these. Open them as you read the lessons.
 
 ### Official FiveM
-- [FiveM Docs (root)](https://docs.fivem.net/) — everything
-- [Scripting Manual](https://docs.fivem.net/docs/scripting-manual/) — concepts
-- [Native Reference](https://docs.fivem.net/natives/) — searchable native database
-- [Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) — Lua-specific functions
-- [NUI Development](https://docs.fivem.net/docs/scripting-manual/nui-development/) — UI guide
-- [Game References](https://docs.fivem.net/docs/game-references/) — controls, blips, pedmodels, etc.
+- [FiveM Docs (root)](https://docs.fivem.net/) - everything
+- [Scripting Manual](https://docs.fivem.net/docs/scripting-manual/) - concepts
+- [Native Reference](https://docs.fivem.net/natives/) - searchable native database
+- [Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) - Lua-specific functions
+- [NUI Development](https://docs.fivem.net/docs/scripting-manual/nui-development/) - UI guide
+- [Game References](https://docs.fivem.net/docs/game-references/) - controls, blips, pedmodels, etc.
 
 ### Communityox / ox libraries (canonical)
-- [coxdocs.dev (root)](https://coxdocs.dev/) — all ox docs
-- [ox_lib](https://coxdocs.dev/ox_lib) — utility library
-- [ox_target](https://coxdocs.dev/ox_target) — third-eye targeting
-- [ox_inventory](https://coxdocs.dev/ox_inventory) — items
-- [oxmysql](https://coxdocs.dev/oxmysql) — MySQL wrapper
-- [communityox GitHub](https://github.com/communityox) — source code
+- [coxdocs.dev (root)](https://coxdocs.dev/) - all ox docs
+- [ox_lib](https://coxdocs.dev/ox_lib) - utility library
+- [ox_target](https://coxdocs.dev/ox_target) - third-eye targeting
+- [ox_inventory](https://coxdocs.dev/ox_inventory) - items
+- [oxmysql](https://coxdocs.dev/oxmysql) - MySQL wrapper
+- [communityox GitHub](https://github.com/communityox) - source code
 
 ### Qbox
 - [Qbox Docs](https://docs.qbox.re/)
-- [qbx_core (GitHub)](https://github.com/Qbox-project/qbx_core) — the framework source
+- [qbx_core (GitHub)](https://github.com/Qbox-project/qbx_core) - the framework source
 
 ### QBCore (legacy, similar API)
 - [QBCore Docs](https://docs.qbcore.org/)
 
 ### Lua language itself
 - [Lua 5.4 Reference Manual](https://www.lua.org/manual/5.4/)
-- [Programming in Lua (free online)](https://www.lua.org/pil/contents.html) — the textbook
+- [Programming in Lua (free online)](https://www.lua.org/pil/contents.html) - the textbook
 
 ### Tools
-- [txAdmin](https://txadm.in/) — server manager
-- [HeidiSQL](https://www.heidisql.com/) — Windows MySQL client
-- [DBeaver](https://dbeaver.io/) — cross-platform MySQL client
-- [VS Code](https://code.visualstudio.com/) — editor
-- [FontAwesome 6 icons](https://fontawesome.com/icons) — icon set ox_lib uses
+- [txAdmin](https://txadm.in/) - server manager
+- [HeidiSQL](https://www.heidisql.com/) - Windows MySQL client
+- [DBeaver](https://dbeaver.io/) - cross-platform MySQL client
+- [VS Code](https://code.visualstudio.com/) - editor
+- [FontAwesome 6 icons](https://fontawesome.com/icons) - icon set ox_lib uses
 
 ---
 

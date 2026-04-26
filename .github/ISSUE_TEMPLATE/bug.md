@@ -31,9 +31,9 @@ What should have happened?
 
 - FiveM build: (e.g., 3095)
 - Framework: (Qbox / QBCore / ESX / standalone)
-- Lua runtime: (Lua 5.4 — yes / no)
+- Lua runtime: (Lua 5.4 - yes / no)
 - Other relevant resource versions: (ox_lib X.X.X, oxmysql X.X.X, etc.)
 
 ## Suggested Fix (Optional)
 
-If you know what should change, drop it here. Or just PR the fix directly — it's faster.
+If you know what should change, drop it here. Or just PR the fix directly - it's faster.

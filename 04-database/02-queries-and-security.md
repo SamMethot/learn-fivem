@@ -4,8 +4,8 @@
 
 Two big database threats kill servers:
 
-1. **SQL injection** — attacker controls part of a query, can read/destroy your DB
-2. **Race conditions** — two requests arrive at the same time, both pass the "do you have money?" check, both deduct, both give items → dupe
+1. **SQL injection** - attacker controls part of a query, can read/destroy your DB
+2. **Race conditions** - two requests arrive at the same time, both pass the "do you have money?" check, both deduct, both give items → dupe
 
 This file covers both, plus the tools to defend.
 
@@ -47,7 +47,7 @@ MySQL.query.await(
 )
 ```
 
-oxmysql escapes the value before sending. The attacker's input becomes a literal string — `'; DROP TABLE players; --` is just searched for as a name. No SQL gets run.
+oxmysql escapes the value before sending. The attacker's input becomes a literal string - `'; DROP TABLE players; --` is just searched for as a name. No SQL gets run.
 
 ### The Rule
 
@@ -84,7 +84,7 @@ Whitelist the column. Parameterize the value. Two-step.
 Player has $100. They fire `buy_gun` twice **at the exact same time** (network spike, scripted spam, etc). Each gun costs $80.
 
 ```lua
--- ↓ NAIVE handler — vulnerable
+-- ↓ NAIVE handler - vulnerable
 RegisterNetEvent('buy_gun', function()
     local src = source
     local cid = getCid(src)
@@ -107,7 +107,7 @@ end)
 
 Both handlers run between each other's steps. Both see fresh data. Both succeed.
 
-### Fix 1 — Atomic Conditional UPDATE
+### Fix 1 - Atomic Conditional UPDATE
 
 The cleanest fix. Let MySQL guarantee atomicity:
 
@@ -128,7 +128,7 @@ MySQL serializes UPDATEs internally. Even if two arrive at the same time, only O
 
 **No dupe.**
 
-### Fix 2 — Per-Player Lock In Lua
+### Fix 2 - Per-Player Lock In Lua
 
 Belt-and-suspenders alternative or addition:
 
@@ -164,7 +164,7 @@ end)
 
 The lock prevents two parallel handlers from both passing the cash check. **Use both fixes together** for defense-in-depth.
 
-### Fix 3 — Framework Money Functions
+### Fix 3 - Framework Money Functions
 
 Frameworks like Qbox provide atomic money functions:
 
@@ -299,7 +299,7 @@ AddEventHandler('playerDropped', function() playerCount = playerCount - 1 end)
 
 ---
 
-## Logging — Always Log Money/Inventory Changes
+## Logging - Always Log Money/Inventory Changes
 
 ```sql
 CREATE TABLE money_log (
@@ -330,9 +330,9 @@ When a dupe happens (and it will), the log tells you who, when, and how. Without
 - **SQL injection** → always `?` placeholders, never `..` concatenation
 - **Race conditions** → atomic conditional `UPDATE ... WHERE col >= ?`, plus per-player Lua locks
 - **Multi-query atomicity** → `MySQL.transaction.await({...})`
-- **Validate types** before queries — type, range, NaN, integer-check
+- **Validate types** before queries - type, range, NaN, integer-check
 - **Index hot WHERE columns**
-- **Don't query in tight loops** — cache, update on events
+- **Don't query in tight loops** - cache, update on events
 - **Log every money/inventory change**
 
 ---
@@ -347,4 +347,4 @@ When a dupe happens (and it will), the log tells you who, when, and how. Without
 
 ---
 
-Next folder: [`05-frameworks/`](../05-frameworks/) — start with [`01-qbox-basics.md`](../05-frameworks/01-qbox-basics.md)
+Next folder: [`05-frameworks/`](../05-frameworks/) - start with [`01-qbox-basics.md`](../05-frameworks/01-qbox-basics.md)

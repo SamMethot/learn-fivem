@@ -4,7 +4,7 @@
 
 A **framework** in FiveM is the resource that owns "what is a player". It defines the player object, jobs, gangs, money, inventory hooks, character creation, and the events that fire on login/logout.
 
-**Qbox (`qbx_core`)** is the most active framework in the FiveM scene right now. It's a modern fork of QBCore — same shape, same concepts, slightly cleaner API.
+**Qbox (`qbx_core`)** is the most active framework in the FiveM scene right now. It's a modern fork of QBCore - same shape, same concepts, slightly cleaner API.
 
 If your server runs:
 - **Qbox** → use `exports.qbx_core:GetPlayer(src)`
@@ -43,7 +43,7 @@ print(player.PlayerData.metadata.hunger)         -- custom stats stored as JSON
 
 ## Money Functions
 
-Money operations are atomic — Qbox handles internal locks so concurrent calls don't dupe.
+Money operations are atomic - Qbox handles internal locks so concurrent calls don't dupe.
 
 ```lua
 local player = exports.qbx_core:GetPlayer(src)
@@ -68,7 +68,7 @@ local cash2 = player.Functions.GetMoney('cash')  -- via function
 player.Functions.SetMoney('cash', 1000, 'admin set')
 ```
 
-**Reason strings** matter — they go to logs. Be specific: `'shop_buy_gun'`, `'police_salary_grade2'`, `'admin_giveall'`. Future-you will thank current-you.
+**Reason strings** matter - they go to logs. Be specific: `'shop_buy_gun'`, `'police_salary_grade2'`, `'admin_giveall'`. Future-you will thank current-you.
 
 ---
 
@@ -116,7 +116,7 @@ end)
 
 -- ↓ fires when the player finishes loading their character
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    print('player loaded — safe to start client logic')
+    print('player loaded - safe to start client logic')
 end)
 
 -- ↓ fires whenever money changes. type = 'cash'/'bank', amount = delta, isRemoved = true/false
@@ -163,7 +163,7 @@ if not player then return end
 if player.PlayerData.job.name ~= 'police' then return end       -- must be police
 if player.PlayerData.job.grade.level < 2 then return end        -- must be grade 2 or higher
 
--- ↓ CLIENT side check (UX hint only — server is the gatekeeper)
+-- ↓ CLIENT side check (UX hint only - server is the gatekeeper)
 local pdata = exports.qbx_core:GetPlayerData()
 local isCop = pdata.job.name == 'police'
 ```
@@ -250,7 +250,7 @@ This does a DB read. Don't call it in a tight loop.
 
 ## Notifications
 
-Qbox doesn't ship a notification system itself anymore — use **ox_lib** (covered next folder):
+Qbox doesn't ship a notification system itself anymore - use **ox_lib** (covered next folder):
 
 ```lua
 -- ↓ from server to a specific client
@@ -355,8 +355,8 @@ Client PlayerData is for display. **Authoritative checks happen server-side.** A
 
 ## TL;DR
 
-- `exports.qbx_core:GetPlayer(src)` server side — always check for nil
-- `exports.qbx_core:GetPlayerData()` client side — for display only
+- `exports.qbx_core:GetPlayer(src)` server side - always check for nil
+- `exports.qbx_core:GetPlayerData()` client side - for display only
 - Money: `AddMoney`, `RemoveMoney` (returns bool!), read `.money.cash` / `.money.bank`
 - Job: `.job.name`, `.job.grade.level`, `SetJob`
 - Metadata: `.metadata.x`, `SetMetaData`
@@ -369,11 +369,11 @@ Client PlayerData is for display. **Authoritative checks happen server-side.** A
 ## Sources
 
 - [Qbox Docs](https://docs.qbox.re/)
-- [qbx_core GitHub](https://github.com/Qbox-project/qbx_core) — read the source
-- [QBCore Docs (legacy)](https://docs.qbcore.org/) — same shape, older API
+- [qbx_core GitHub](https://github.com/Qbox-project/qbx_core) - read the source
+- [QBCore Docs (legacy)](https://docs.qbcore.org/) - same shape, older API
 - [GetPlayerIdentifierByType native](https://docs.fivem.net/natives/?_0xA61C8FCDFF1206F4)
 - [Resource ACE (permissions)](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#permissions)
 
 ---
 
-Next folder: [`06-ox-libraries/`](../06-ox-libraries/) — start with [`01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)
+Next folder: [`06-ox-libraries/`](../06-ox-libraries/) - start with [`01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)

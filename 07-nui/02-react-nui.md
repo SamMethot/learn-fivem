@@ -2,19 +2,19 @@
 
 ## Plain English
 
-For real production NUI (phones, dashboards, multi-page menus), you don't write raw HTML/JS — you write **React** (or Svelte) and bundle it with **Vite**. You get components, state, hot reload during development, and a real ecosystem of UI libraries.
+For real production NUI (phones, dashboards, multi-page menus), you don't write raw HTML/JS - you write **React** (or Svelte) and bundle it with **Vite**. You get components, state, hot reload during development, and a real ecosystem of UI libraries.
 
-This lesson is React 19 + Vite + TypeScript. If you don't know React, the [official tutorial](https://react.dev/learn) is enough — come back here once you've got the basics.
+This lesson is React 19 + Vite + TypeScript. If you don't know React, the [official tutorial](https://react.dev/learn) is enough - come back here once you've got the basics.
 
 ---
 
 ## Why React + Vite
 
-- **Components** — reuse UI pieces
+- **Components** - reuse UI pieces
 - **State** clean (`useState`, context)
-- **Vite hot reload** — iterate UI in a regular browser, no FiveM restart
-- **TypeScript** — fewer bugs, better autocomplete
-- **Ecosystem** — Tailwind, shadcn/ui, framer-motion all work
+- **Vite hot reload** - iterate UI in a regular browser, no FiveM restart
+- **TypeScript** - fewer bugs, better autocomplete
+- **Ecosystem** - Tailwind, shadcn/ui, framer-motion all work
 
 ---
 
@@ -84,7 +84,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    assetsInlineLimit: 0,                                        // don't inline assets — keep them as separate files
+    assetsInlineLimit: 0,                                        // don't inline assets - keep them as separate files
     rollupOptions: {
       output: {
         // predictable filenames so fxmanifest globs match
@@ -134,7 +134,7 @@ Then in the FiveM server console: `restart my_resource`. Connect, test.
 For UI iteration without restarting FiveM, use Vite's dev server in parallel:
 ```bash
 npm run dev
-# opens http://localhost:5173 — iterate the UI in your browser with mocks
+# opens http://localhost:5173 - iterate the UI in your browser with mocks
 ```
 
 ---
@@ -167,7 +167,7 @@ import { ErrorBoundary } from './providers/ErrorBoundary';
 import { fetchNui } from './utils/fetchNui';
 
 export default function App() {
-    // ↓ visibility state (NEVER use this for conditional render — use it in style)
+    // ↓ visibility state (NEVER use this for conditional render - use it in style)
     const [visible, setVisible] = useState(false);
     const [items, setItems] = useState<Array<{id: string, price: number}>>([]);
 
@@ -222,7 +222,7 @@ export default function App() {
 }
 ```
 
-The `style={{ visibility: ... }}` line is non-negotiable. Conditional render `{visible && <Component />}` unmounts the message listener — Lua sends events into the void.
+The `style={{ visibility: ... }}` line is non-negotiable. Conditional render `{visible && <Component />}` unmounts the message listener - Lua sends events into the void.
 
 ---
 
@@ -363,7 +363,7 @@ end)
 ## Build Flow
 
 **Dev cycle:**
-1. `npm run dev` — Vite dev server, iterate the UI in a browser
+1. `npm run dev` - Vite dev server, iterate the UI in a browser
 2. Use `import.meta.env.DEV` mocks to fake Lua messages
 3. When ready: `npm run build`
 4. In FiveM: `restart my_resource`
@@ -390,7 +390,7 @@ Add the directives to your CSS:
 @tailwind utilities;
 ```
 
-**Use Tailwind v3.4.x** — v4 uses OKLCH colors that CEF doesn't render correctly. v3 is the safe stop point.
+**Use Tailwind v3.4.x** - v4 uses OKLCH colors that CEF doesn't render correctly. v3 is the safe stop point.
 
 ---
 
@@ -415,7 +415,7 @@ When reading other public NUI resources, look for:
 - An **`ErrorBoundary`** wrapping the root component
 - **`onResourceStop` cleanup** in client Lua
 
-If a public resource is missing any of these — don't copy that part.
+If a public resource is missing any of these - don't copy that part.
 
 ---
 
@@ -433,12 +433,12 @@ If a public resource is missing any of these — don't copy that part.
 ## Sources
 
 - [FiveM NUI Development Guide](https://docs.fivem.net/docs/scripting-manual/nui-development/)
-- [React docs](https://react.dev/) — official
-- [React 19 release notes](https://react.dev/blog/2024/12/05/react-19) — what's new
+- [React docs](https://react.dev/) - official
+- [React 19 release notes](https://react.dev/blog/2024/12/05/react-19) - what's new
 - [Vite docs](https://vitejs.dev/)
 - [TypeScript docs](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS docs](https://tailwindcss.com/docs)
 
 ---
 
-Next folder: [`08-security/`](../08-security/) — start with [`01-security-checklist.md`](../08-security/01-security-checklist.md)
+Next folder: [`08-security/`](../08-security/) - start with [`01-security-checklist.md`](../08-security/01-security-checklist.md)

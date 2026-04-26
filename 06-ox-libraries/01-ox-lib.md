@@ -25,11 +25,11 @@ shared_script '@ox_lib/init.lua'                                -- enable lib gl
 lua54 'yes'                                                     -- ox_lib needs Lua 5.4
 ```
 
-Now `lib` is a global on both client and server. Some modules are client-only or server-only — docs say which.
+Now `lib` is a global on both client and server. Some modules are client-only or server-only - docs say which.
 
 ---
 
-## Notifications — `lib.notify`
+## Notifications - `lib.notify`
 
 The most-used function in any FiveM script.
 
@@ -37,7 +37,7 @@ The most-used function in any FiveM script.
 -- ↓ called on the CLIENT
 lib.notify({
     id = 'unique_id',                       -- [optional] dedupe key. If a notif with the same id is already showing, replaces it instead of stacking.
-    title = 'Shop',                         -- [optional*] header text — *need this OR description
+    title = 'Shop',                         -- [optional*] header text - *need this OR description
     description = 'You bought bread',       -- [optional*] body, supports markdown
     type = 'success',                       -- [optional] 'inform' (default), 'success', 'error', 'warning'
     position = 'top-right',                 -- [optional] default 'top-right'. Other: 'top', 'top-left', 'bottom-*', 'center-*'
@@ -63,11 +63,11 @@ Bare-minimum call:
 lib.notify({ description = 'Saved' })   -- defaults: type=inform, position=top-right, duration=3000
 ```
 
-[Full notify options](https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify) — every field documented.
+[Full notify options](https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify) - every field documented.
 
 ---
 
-## Progress Bar — `lib.progressBar`
+## Progress Bar - `lib.progressBar`
 
 Block player input while showing a bar (lockpicking, hacking, drinking):
 
@@ -95,11 +95,11 @@ else
 end
 ```
 
-`progressCircle` is the circular variant — same args.
+`progressCircle` is the circular variant - same args.
 
 ---
 
-## Context Menu — `lib.registerContext` / `lib.showContext`
+## Context Menu - `lib.registerContext` / `lib.showContext`
 
 The menu you see when you target NPCs and pick options. Two-step: register the menu definition, then show it.
 
@@ -134,7 +134,7 @@ For submenus, set `menu = 'child_id'` on an option, and register a child menu wi
 
 ---
 
-## Input Dialog — `lib.inputDialog`
+## Input Dialog - `lib.inputDialog`
 
 Pop up a form with multiple input types. Returns a table of values, or `nil` if cancelled.
 
@@ -173,7 +173,7 @@ local plate, year, color, insured = input[1], input[2], input[3], input[4]
 
 ---
 
-## Alert Dialog — `lib.alertDialog`
+## Alert Dialog - `lib.alertDialog`
 
 Confirm dialog with OK/Cancel:
 
@@ -192,7 +192,7 @@ end
 
 ---
 
-## Callbacks — Already Covered
+## Callbacks - Already Covered
 
 Full deep-dive in [`02-events/04-callbacks.md`](../02-events/04-callbacks.md). Quick recap:
 
@@ -208,7 +208,7 @@ local ok, msg = lib.callback.await('shop:buy', false, 'bread')
 
 ---
 
-## Cache — Auto-Updated Common State
+## Cache - Auto-Updated Common State
 
 Polling for "is the player in a vehicle" wastes CPU. The cache module gives you these for free:
 
@@ -237,7 +237,7 @@ This replaces a `while true do Wait(500) end` polling loop entirely.
 
 ---
 
-## Keybinds — `lib.addKeybind`
+## Keybinds - `lib.addKeybind`
 
 Register keybinds users can remap in FiveM's settings menu:
 
@@ -256,7 +256,7 @@ Players can rebind via Settings → Keybinds → FiveM. Better than hardcoding k
 
 ---
 
-## Points — 3D Trigger Zones
+## Points - 3D Trigger Zones
 
 A "point" = a coordinate with a distance threshold. ox_lib batches all points together so you have ONE shared distance loop instead of 50 separate `while true` loops.
 
@@ -287,7 +287,7 @@ Massive perf win over rolling your own. Use this for shop ranges, mission trigge
 
 ---
 
-## Zones — Polygon / Box / Sphere
+## Zones - Polygon / Box / Sphere
 
 For larger or non-spherical areas:
 
@@ -345,7 +345,7 @@ lib.math.random(1, 10)                                           -- inclusive ra
 
 ## Nearby Player / Ped / Vehicle
 
-Batched — way cheaper than `GetGamePool` + manual loop:
+Batched - way cheaper than `GetGamePool` + manual loop:
 
 ```lua
 local players = lib.getNearbyPlayers(coords, 10.0, false)       -- nearby player srcs within 10m
@@ -380,7 +380,7 @@ The active locale is set via `set ox:locale 'en'` in `server.cfg`.
 lib.versionCheck('yourname/yourrepo')                           -- pings GitHub for the latest release
 ```
 
-Useful for resources you ship publicly — warns admins if they're out of date.
+Useful for resources you ship publicly - warns admins if they're out of date.
 
 ---
 
@@ -400,20 +400,20 @@ local banned = lib.isPlayerBanned(src)                          -- check ban sta
 - `lib.callback.register` / `lib.callback.await`
 - `cache.ped`, `cache.vehicle`, `lib.onCache` instead of polling
 - `lib.points`, `lib.zones` for distance-triggered logic
-- Use ox_lib helpers everywhere — they're batched and cheaper than rolling your own
+- Use ox_lib helpers everywhere - they're batched and cheaper than rolling your own
 
 ---
 
 ## Sources
 
 - [ox_lib docs (canonical)](https://coxdocs.dev/ox_lib)
-- [ox_lib GitHub](https://github.com/communityox/ox_lib) — source code
+- [ox_lib GitHub](https://github.com/communityox/ox_lib) - source code
 - [Notify module](https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify)
 - [Callback module](https://coxdocs.dev/ox_lib/Modules/Callback)
 - [Cache module](https://coxdocs.dev/ox_lib/Modules/Cache/Client)
 - [Points module source](https://github.com/communityox/ox_lib/tree/master/imports/points)
 - [Zones module](https://coxdocs.dev/ox_lib/Modules/Zones/Shared)
-- [FontAwesome 6 icons](https://fontawesome.com/icons) — icon name reference
+- [FontAwesome 6 icons](https://fontawesome.com/icons) - icon name reference
 
 ---
 

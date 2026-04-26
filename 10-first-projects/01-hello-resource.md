@@ -19,7 +19,7 @@ resources/[test]/hello_world/
 └── server.lua
 ```
 
-Use `[test]/` as a category so it doesn't conflict with anything else. Note `[test]` is just a folder grouping — not a resource itself.
+Use `[test]/` as a category so it doesn't conflict with anything else. Note `[test]` is just a folder grouping - not a resource itself.
 
 In `server.cfg`:
 
@@ -85,21 +85,21 @@ end)
 Quick recap of `lib.notify` options:
 
 **Required (need at least one):**
-- `title` — header text
-- `description` — body text (supports markdown)
+- `title` - header text
+- `description` - body text (supports markdown)
 
 **Optional:**
-- `id` — dedupe key. Same id within active duration replaces the existing notif instead of stacking. **Always set this** in production.
-- `duration` — milliseconds. default `3000`.
-- `showDuration` — show countdown bar. default `true`.
-- `position` — `top` / `top-right` / `top-left` / `bottom` / `bottom-right` / `bottom-left` / `center-right` / `center-left`. default `top-right`.
-- `type` — `inform` / `error` / `success` / `warning`. default `inform`.
-- `icon` — FontAwesome 6 icon name (no `fa-` prefix needed).
-- `iconColor` — any CSS color. default matches `type`.
-- `iconAnimation` — `spin` / `spinPulse` / `spinReverse` / `pulse` / `beat` / `fade` / `beatFade` / `bounce` / `shake`.
-- `alignIcon` — `top` or `center`. default `center`.
-- `style` — React CSS object for full custom styling.
-- `sound` — `{ bank?, set, name }` plays an in-game audio cue.
+- `id` - dedupe key. Same id within active duration replaces the existing notif instead of stacking. **Always set this** in production.
+- `duration` - milliseconds. default `3000`.
+- `showDuration` - show countdown bar. default `true`.
+- `position` - `top` / `top-right` / `top-left` / `bottom` / `bottom-right` / `bottom-left` / `center-right` / `center-left`. default `top-right`.
+- `type` - `inform` / `error` / `success` / `warning`. default `inform`.
+- `icon` - FontAwesome 6 icon name (no `fa-` prefix needed).
+- `iconColor` - any CSS color. default matches `type`.
+- `iconAnimation` - `spin` / `spinPulse` / `spinReverse` / `pulse` / `beat` / `fade` / `beatFade` / `bounce` / `shake`.
+- `alignIcon` - `top` or `center`. default `center`.
+- `style` - React CSS object for full custom styling.
+- `sound` - `{ bank?, set, name }` plays an in-game audio cue.
 
 ### Bare-minimum call
 
@@ -112,7 +112,7 @@ lib.notify({ description = 'Saved' })
 
 ```lua
 lib.notify({
-    id = 'unique_key',                                          -- always — prevents spam
+    id = 'unique_key',                                          -- always - prevents spam
     title = 'Shop',                                             -- gives context
     description = 'Bought bread',
     type = 'success',                                           -- pick one
@@ -127,7 +127,7 @@ lib.notify({
 ```lua
 -- ↓ listen for the /hello command's server event
 RegisterNetEvent('hello:say', function()
-    local src = source                                          -- ALWAYS first line — cache the player who fired
+    local src = source                                          -- ALWAYS first line - cache the player who fired
     local player = exports.qbx_core:GetPlayer(src)              -- get Qbox player object
 
     -- ↓ "or 'Stranger'" gives a fallback if the framework isn't loaded for this player yet
@@ -254,7 +254,7 @@ In `permissions.cfg`:
 add_ace group.admin command.helloall allow
 ```
 
-Now any admin (anyone with `group.admin`) can run `/helloall`. Other players get nothing — the command silently rejects their attempt.
+Now any admin (anyone with `group.admin`) can run `/helloall`. Other players get nothing - the command silently rejects their attempt.
 
 ---
 
@@ -274,7 +274,7 @@ Run after every Lua change. **No hot reload for Lua in FiveM.**
 resmon
 ```
 
-`hello_world` should show **~0.00 ms**. There are no loops — everything is event-driven.
+`hello_world` should show **~0.00 ms**. There are no loops - everything is event-driven.
 
 ---
 
@@ -292,8 +292,8 @@ If your server uses one big monorepo, adapt the path. Either way: small, focused
 
 ## What's Next
 
-- [`02-shop.md`](02-shop.md) — full shop with money, inventory, security
-- [`03-nui-menu.md`](03-nui-menu.md) — HTML UI menu opened from a command
+- [`02-shop.md`](02-shop.md) - full shop with money, inventory, security
+- [`03-nui-menu.md`](03-nui-menu.md) - HTML UI menu opened from a command
 
 ---
 

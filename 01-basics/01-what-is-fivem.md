@@ -4,7 +4,7 @@
 
 FiveM is a **modification for GTA V** that lets people run their own multiplayer servers with custom rules, scripts, vehicles, jobs, and maps. You keep the base game (graphics, physics, the city of Los Santos), but instead of connecting to Rockstar's GTA Online servers, you connect to a community-run server.
 
-If you've heard of "GTA RP", "NoPixel", or seen Twitch streamers playing as cops/criminals on a custom server — that's FiveM.
+If you've heard of "GTA RP", "NoPixel", or seen Twitch streamers playing as cops/criminals on a custom server - that's FiveM.
 
 ---
 
@@ -18,8 +18,8 @@ GTA Online is closed. You can't:
 
 FiveM solves that by splitting the game into two layers:
 
-- **The base game** (GTA V on your hard drive) — graphics, physics, the city itself, the gameplay engine.
-- **The server layer** (the FiveM runtime) — runs custom Lua/JS/C# scripts that tell the game what to do.
+- **The base game** (GTA V on your hard drive) - graphics, physics, the city itself, the gameplay engine.
+- **The server layer** (the FiveM runtime) - runs custom Lua/JS/C# scripts that tell the game what to do.
 
 The server says "spawn this car here, give this player money, open this menu." The game renders it. The player sees it.
 
@@ -44,7 +44,7 @@ A simplified diagram of what's actually happening:
                        └────────────────────┘
 ```
 
-The server runs 24/7. Clients connect when players join, disconnect when they leave. **Most of your scripts have a piece on each side** — client-side for what the player sees and does, server-side for the trusted source-of-truth (money, items, etc.).
+The server runs 24/7. Clients connect when players join, disconnect when they leave. **Most of your scripts have a piece on each side** - client-side for what the player sees and does, server-side for the trusted source-of-truth (money, items, etc.).
 
 ---
 
@@ -81,11 +81,11 @@ NUI talks to client Lua via messages. Client Lua talks to server Lua via events.
 ## Why Lua?
 
 FiveM picked Lua as the main language because it's:
-- **Small** — you can learn enough to read code in 30 minutes
-- **Fast** — embedded into the game engine, low overhead
-- **Easy to embed** — Rockstar already used it for some things, so the integration is smooth
+- **Small** - you can learn enough to read code in 30 minutes
+- **Fast** - embedded into the game engine, low overhead
+- **Easy to embed** - Rockstar already used it for some things, so the integration is smooth
 
-You don't get a choice — if you want to write FiveM scripts, you write Lua. The server can also run JavaScript/TypeScript and C#, but **99% of community code is Lua**, so start there.
+You don't get a choice - if you want to write FiveM scripts, you write Lua. The server can also run JavaScript/TypeScript and C#, but **99% of community code is Lua**, so start there.
 
 ---
 
@@ -112,10 +112,10 @@ resources/
 The server loads a resource when it sees `ensure my_shop` in `server.cfg`. Stop the server, no resource. Start the server, all `ensure`d resources boot up.
 
 Real-world resources you'll see:
-- `qbx_core` — the Qbox framework itself
-- `ox_lib` — the utility library every other resource uses
-- `ox_inventory` — handles items and storage
-- `my_custom_shop` — something you'd build
+- `qbx_core` - the Qbox framework itself
+- `ox_lib` - the utility library every other resource uses
+- `ox_inventory` - handles items and storage
+- `my_custom_shop` - something you'd build
 
 We dig into `fxmanifest.lua` in detail in lesson [`04-resources-and-fxmanifest.md`](04-resources-and-fxmanifest.md).
 
@@ -125,17 +125,17 @@ We dig into `fxmanifest.lua` in detail in lesson [`04-resources-and-fxmanifest.m
 
 - FiveM = mod for GTA V that runs custom multiplayer servers.
 - You write **client Lua** (player PC), **server Lua** (server), and **NUI** (HTML/React for menus).
-- All code lives inside **resources** — folders with an `fxmanifest.lua`.
+- All code lives inside **resources** - folders with an `fxmanifest.lua`.
 - Server is the trusted source of truth. Client is the display layer.
 
 ---
 
 ## Sources
 
-- [FiveM Docs (intro)](https://docs.fivem.net/docs/) — start page
-- [Introduction to Resources](https://docs.fivem.net/docs/scripting-manual/introduction/introduction-to-resources/) — official explanation
-- [Scripting Manual Introduction](https://docs.fivem.net/docs/scripting-manual/introduction/) — broader concepts
-- [Cfx.re Forum](https://forum.cfx.re/) — community Q&A
+- [FiveM Docs (intro)](https://docs.fivem.net/docs/) - start page
+- [Introduction to Resources](https://docs.fivem.net/docs/scripting-manual/introduction/introduction-to-resources/) - official explanation
+- [Scripting Manual Introduction](https://docs.fivem.net/docs/scripting-manual/introduction/) - broader concepts
+- [Cfx.re Forum](https://forum.cfx.re/) - community Q&A
 
 ---
 

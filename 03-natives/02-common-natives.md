@@ -2,7 +2,7 @@
 
 ## Plain English
 
-This is a cheat sheet of the natives you'll use 90% of the time. Don't memorize — bookmark and skim.
+This is a cheat sheet of the natives you'll use 90% of the time. Don't memorize - bookmark and skim.
 
 If a native isn't here, look it up: [docs.fivem.net/natives](https://docs.fivem.net/natives/).
 
@@ -178,7 +178,7 @@ DrawMarker(
 )
 ```
 
-Drawing markers is **expensive at 60 fps**. Prefer `lib.zones` or `lib.points` (covered in [`06-ox-libraries/01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)) — they batch the work.
+Drawing markers is **expensive at 60 fps**. Prefer `lib.zones` or `lib.points` (covered in [`06-ox-libraries/01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)) - they batch the work.
 
 ---
 
@@ -222,20 +222,20 @@ DisableControlAction(0, 38, true)                   -- disable a control this fr
 ```
 
 Common control IDs:
-- 38 — E
-- 47 — G
-- 74 — H
-- 23 — F
-- 29 — B
-- 21 — Left Shift
-- 36 — Left Ctrl
-- 22 — Space
+- 38 - E
+- 47 - G
+- 74 - H
+- 23 - F
+- 29 - B
+- 21 - Left Shift
+- 36 - Left Ctrl
+- 22 - Space
 
 Full list: [docs.fivem.net/docs/game-references/controls](https://docs.fivem.net/docs/game-references/controls/)
 
 ---
 
-## Vanilla GTA Notifications (Ugly — Use ox_lib Instead)
+## Vanilla GTA Notifications (Ugly - Use ox_lib Instead)
 
 ```lua
 SetNotificationTextEntry('STRING')
@@ -311,7 +311,7 @@ ExecuteCommand('kick 1 reason')                     -- run a server command from
 
 ---
 
-## Snippet — Teleport The Player
+## Snippet - Teleport The Player
 
 ```lua
 SetEntityCoords(PlayerPedId(), x, y, z, false, false, false, true)
@@ -319,7 +319,7 @@ SetEntityCoords(PlayerPedId(), x, y, z, false, false, false, true)
 
 ---
 
-## Snippet — Find The Nearest Vehicle (Client)
+## Snippet - Find The Nearest Vehicle (Client)
 
 ```lua
 local ped = PlayerPedId()
@@ -339,7 +339,7 @@ end
 
 ---
 
-## Snippet — Force Sprint Speed
+## Snippet - Force Sprint Speed
 
 ```lua
 SetRunSprintMultiplierForPlayer(PlayerId(), 1.49)   -- 1.0 = default. 1.49 ≈ max safe value before anti-cheats flag
@@ -347,7 +347,7 @@ SetRunSprintMultiplierForPlayer(PlayerId(), 1.49)   -- 1.0 = default. 1.49 ≈ m
 
 ---
 
-## Snippet — Make Player Semi-Transparent
+## Snippet - Make Player Semi-Transparent
 
 ```lua
 SetEntityAlpha(PlayerPedId(), 100, false)            -- 0-255. 100 = pretty transparent.
@@ -358,21 +358,21 @@ ResetEntityAlpha(PlayerPedId())                      -- restore
 
 ## TL;DR
 
-- This is a reference page — bookmark, skim, don't memorize.
+- This is a reference page - bookmark, skim, don't memorize.
 - Use `fivem_doc_lookup` (MCP) or VS Code autocomplete for signatures.
 - Always release streamed assets (`SetModelAsNoLongerNeeded`).
-- Markers and text in `Wait(0)` loops are expensive — prefer `lib.zones` / `lib.points`.
+- Markers and text in `Wait(0)` loops are expensive - prefer `lib.zones` / `lib.points`.
 
 ---
 
 ## Sources
 
-- [Native database (searchable)](https://docs.fivem.net/natives/) — the truth
-- [Game references (controls, blips, peds)](https://docs.fivem.net/docs/game-references/) — sprite IDs, control IDs
+- [Native database (searchable)](https://docs.fivem.net/natives/) - the truth
+- [Game references (controls, blips, peds)](https://docs.fivem.net/docs/game-references/) - sprite IDs, control IDs
 - [Vehicle Models](https://docs.fivem.net/docs/game-references/vehicle-models/)
 - [Weapon Models](https://docs.fivem.net/docs/game-references/weapon-models/)
 - [Ped Models](https://docs.fivem.net/docs/game-references/ped-models/)
 
 ---
 
-Next folder: [`04-database/`](../04-database/) — start with [`01-oxmysql-basics.md`](../04-database/01-oxmysql-basics.md)
+Next folder: [`04-database/`](../04-database/) - start with [`01-oxmysql-basics.md`](../04-database/01-oxmysql-basics.md)

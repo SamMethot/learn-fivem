@@ -6,7 +6,7 @@ Build a **complete, secure shop**. Pulls together everything you've learned: eve
 
 Scope: one ped at Legion Square, target-based menu, 3 items, cash only.
 
-If you only build one project from this course, **build this one** — it's a real microcosm of how 80% of FiveM resources work.
+If you only build one project from this course, **build this one** - it's a real microcosm of how 80% of FiveM resources work.
 
 ---
 
@@ -137,7 +137,7 @@ CreateThread(function()
     spawnShopkeeper()
 end)
 
--- ↓ CLEANUP — delete the ped + remove the target on resource stop
+-- ↓ CLEANUP - delete the ped + remove the target on resource stop
 AddEventHandler('onResourceStop', function(r)
     if r ~= GetCurrentResourceName() then return end
     if shopPed and DoesEntityExist(shopPed) then
@@ -179,7 +179,7 @@ lib.callback.register('simple_shop:getItems', function(src)
     return out
 end)
 
--- ↓ buy event — runs the full security checklist
+-- ↓ buy event - runs the full security checklist
 RegisterNetEvent('simple_shop:buy', function(itemId)
     local src = source                                          -- 1. cache source FIRST
     if not src or src <= 0 then return end                      -- valid src
@@ -225,7 +225,7 @@ RegisterNetEvent('simple_shop:buy', function(itemId)
         return unlock()
     end
 
-    -- ↓ 9. ATOMIC MONEY (Qbox RemoveMoney returns false if not enough — atomic internally)
+    -- ↓ 9. ATOMIC MONEY (Qbox RemoveMoney returns false if not enough - atomic internally)
     if not player.Functions.RemoveMoney('cash', item.price, 'simple_shop:' .. itemId) then
         TriggerClientEvent('ox_lib:notify', src, {
             id = 'shop_broke',
@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS money_log (
 ## Test Flow
 
 1. Restart the server (or `ensure simple_shop`)
-2. Walk to `vec3(25.7, -1347.3, 29.49)` — Legion Square 24/7 shop area
+2. Walk to `vec3(25.7, -1347.3, 29.49)` - Legion Square 24/7 shop area
 3. Hold the target key (LEFT ALT by default) → see "Browse Shop" option
 4. Click it → context menu shows 3 items
 5. Click bread → "Bought Bread for $10" notification
@@ -321,11 +321,11 @@ Passes the audit.
 
 If you want to keep building:
 
-1. **Bank payment option** — add a menu choice for "pay with bank" using `RemoveMoney('bank', ...)`.
-2. **Quantity selector** — use `lib.inputDialog` to ask how many.
-3. **Police job discount** — server checks `player.PlayerData.job.name == 'police'` and applies 10% off.
-4. **Multiple shop locations** — config array of vec3s, spawn a ped at each, distance check matches the closest.
-5. **Stock system** — limited quantity per item per 10-minute window. Track in a Lua table or DB.
+1. **Bank payment option** - add a menu choice for "pay with bank" using `RemoveMoney('bank', ...)`.
+2. **Quantity selector** - use `lib.inputDialog` to ask how many.
+3. **Police job discount** - server checks `player.PlayerData.job.name == 'police'` and applies 10% off.
+4. **Multiple shop locations** - config array of vec3s, spawn a ped at each, distance check matches the closest.
+5. **Stock system** - limited quantity per item per 10-minute window. Track in a Lua table or DB.
 
 Each one is a small lesson in itself. Pick one and try.
 

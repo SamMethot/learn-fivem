@@ -2,7 +2,7 @@
 
 ## Plain English
 
-A **net event** is one-way — fire and forget, no return value. A **callback** is a request/response pair: client asks the server something, server answers, client gets the answer back.
+A **net event** is one-way - fire and forget, no return value. A **callback** is a request/response pair: client asks the server something, server answers, client gets the answer back.
 
 Use a callback when:
 - The client needs **data back** from the server (player's bank balance, list of vehicles, shop inventory)
@@ -16,7 +16,7 @@ If you've used HTTP, callbacks are like a `GET` request. Net events are like a `
 
 `ox_lib` ships a callback module. It's promise-based, clean, and what almost every modern server uses.
 
-### Server side — register the callback
+### Server side - register the callback
 
 ```lua
 -- name the callback, provide a function that takes (source, ...args) and returns the response
@@ -41,7 +41,7 @@ end)
 
 Whatever you `return` is what arrives on the client. Multiple returns work.
 
-### Client side — `await` (blocking, looks sequential)
+### Client side - `await` (blocking, looks sequential)
 
 ```lua
 -- ↓ "false" as the second arg = use default 5-second timeout. or pass ms to override.
@@ -53,9 +53,9 @@ end
 -- proceed with the buy UI
 ```
 
-`lib.callback.await` blocks the calling **coroutine** (Lua's lightweight thread). The rest of the script keeps running — only the calling thread waits.
+`lib.callback.await` blocks the calling **coroutine** (Lua's lightweight thread). The rest of the script keeps running - only the calling thread waits.
 
-### Client side — non-blocking with a callback function
+### Client side - non-blocking with a callback function
 
 ```lua
 -- if you can't yield (some places don't allow it), pass a function as the third arg
@@ -166,7 +166,7 @@ Bump the timeout if your callback does heavy DB work. Default 5s is usually plen
 
 ## Don't Nest Callbacks Heavily
 
-Bad — "callback hell":
+Bad - "callback hell":
 
 ```lua
 lib.callback('a', false, function(ra)
@@ -178,7 +178,7 @@ lib.callback('a', false, function(ra)
 end)
 ```
 
-Use `await` inside a thread instead — looks sequential:
+Use `await` inside a thread instead - looks sequential:
 
 ```lua
 CreateThread(function()
@@ -285,10 +285,10 @@ Ask the server "am I allowed?" before doing the expensive UI work. Server gates,
 
 ## Sources
 
-- [ox_lib Callback module (docs)](https://coxdocs.dev/ox_lib/Modules/Callback) — official reference
-- [ox_lib Callback source](https://github.com/communityox/ox_lib/tree/master/imports/callback) — read the implementation
-- [Working With Events](https://docs.fivem.net/docs/scripting-manual/working-with-events/) — events overview
+- [ox_lib Callback module (docs)](https://coxdocs.dev/ox_lib/Modules/Callback) - official reference
+- [ox_lib Callback source](https://github.com/communityox/ox_lib/tree/master/imports/callback) - read the implementation
+- [Working With Events](https://docs.fivem.net/docs/scripting-manual/working-with-events/) - events overview
 
 ---
 
-Next folder: [`03-natives/`](../03-natives/) — start with [`01-what-are-natives.md`](../03-natives/01-what-are-natives.md)
+Next folder: [`03-natives/`](../03-natives/) - start with [`01-what-are-natives.md`](../03-natives/01-what-are-natives.md)

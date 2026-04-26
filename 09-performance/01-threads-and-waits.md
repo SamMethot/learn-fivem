@@ -4,13 +4,13 @@
 
 Most "FiveM is laggy" problems trace back to **bad threading**. Resources running `while true` loops every frame doing distance checks. Servers with 50 of those running simultaneously eat all the tick budget and you wonder why the framerate's awful.
 
-This lesson teaches the main rule: **`Wait(0)` only when you actually need every-frame execution.** Most of the time, `Wait(500)`, `Wait(1000)`, or — better — event-driven code, is the answer.
+This lesson teaches the main rule: **`Wait(0)` only when you actually need every-frame execution.** Most of the time, `Wait(500)`, `Wait(1000)`, or - better - event-driven code, is the answer.
 
 ---
 
 ## Threads
 
-Lua doesn't have OS threads. FiveM gives you **coroutines** via `CreateThread` — cooperative tasks that yield via `Wait`:
+Lua doesn't have OS threads. FiveM gives you **coroutines** via `CreateThread` - cooperative tasks that yield via `Wait`:
 
 ```lua
 CreateThread(function()
@@ -81,7 +81,7 @@ This runs 60+ times a second. **One resource doing this is fine.** 50 resources 
 
 The single most common anti-pattern in FiveM. Three versions, getting better:
 
-### BAD — Always 60 fps
+### BAD - Always 60 fps
 
 ```lua
 CreateThread(function()
@@ -98,7 +98,7 @@ end)
 
 Always 60 fps, always doing distance math even when 1km away.
 
-### BETTER — Variable Sleep Based On Distance
+### BETTER - Variable Sleep Based On Distance
 
 ```lua
 CreateThread(function()
@@ -114,7 +114,7 @@ CreateThread(function()
         elseif dist < 100.0 then
             sleep = 500                                         -- mid-range, occasional check
         end
-        -- else: sleep stays at 1000 — far away, barely check
+        -- else: sleep stays at 1000 - far away, barely check
 
         Wait(sleep)
     end
@@ -123,7 +123,7 @@ end)
 
 Tight only when close. The variable `sleep` is the trick.
 
-### BEST — Use `lib.points`
+### BEST - Use `lib.points`
 
 ```lua
 local point = lib.points.new({
@@ -138,7 +138,7 @@ function point:nearby()
 end
 ```
 
-ox_lib runs ONE shared loop for all points. Your resource does **zero idle work** — `nearby` only fires when you're close.
+ox_lib runs ONE shared loop for all points. Your resource does **zero idle work** - `nearby` only fires when you're close.
 
 ---
 
@@ -146,7 +146,7 @@ ox_lib runs ONE shared loop for all points. Your resource does **zero idle work*
 
 If you can listen for an event instead of polling state, do it.
 
-### Bad — polling
+### Bad - polling
 
 ```lua
 CreateThread(function()
@@ -162,7 +162,7 @@ end)
 
 This runs forever. Twice a second. Even when the player has been on foot for an hour.
 
-### Good — event-driven via `lib.onCache`
+### Good - event-driven via `lib.onCache`
 
 ```lua
 lib.onCache('vehicle', function(newVeh)
@@ -197,7 +197,7 @@ end)
 
 **EXPENSIVE.** It traverses every vehicle the engine tracks. Rarely needed every frame.
 
-If you need nearby vehicles, use `lib.getNearbyVehicles(coords, radius, false)` — radius-bound and batched.
+If you need nearby vehicles, use `lib.getNearbyVehicles(coords, radius, false)` - radius-bound and batched.
 
 ### 3. Raycasting every frame
 
@@ -247,7 +247,7 @@ end)
 
 With 128 players, that's 128 `SetMetaData` calls per second + 128 DB writes. Heavy.
 
-Better — stagger or batch:
+Better - stagger or batch:
 
 ```lua
 CreateThread(function()
@@ -284,7 +284,7 @@ Rule of thumb (client side):
 - **Hot (combat, driving with mods loaded):** under 0.3 ms
 - **Anything over 0.5 ms** sustained = needs work
 
-Server-side has its own budget — depends on player count. Use `txAdmin`'s monitor or the cfx server profiler.
+Server-side has its own budget - depends on player count. Use `txAdmin`'s monitor or the cfx server profiler.
 
 ---
 
@@ -328,11 +328,11 @@ AddEventHandler('onResourceStop', function(r)
 end)
 ```
 
-In practice, FiveM kills threads on resource stop anyway — but for long `Wait(5000+)` threads, a clean shutdown avoids weird half-tick state.
+In practice, FiveM kills threads on resource stop anyway - but for long `Wait(5000+)` threads, a clean shutdown avoids weird half-tick state.
 
 ---
 
-## Decision Tree — "How Should I Run This Code?"
+## Decision Tree - "How Should I Run This Code?"
 
 ```
 Need to do X?
@@ -358,11 +358,11 @@ Need to do X?
 
 ## Sources
 
-- [FiveM Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) — `CreateThread`, `Wait`
-- [resmon and profiler](https://docs.fivem.net/docs/scripting-reference/profiler/) — performance tools
-- [ox_lib points (source)](https://github.com/communityox/ox_lib/tree/master/imports/points) — batched distance loop
+- [FiveM Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) - `CreateThread`, `Wait`
+- [resmon and profiler](https://docs.fivem.net/docs/scripting-reference/profiler/) - performance tools
+- [ox_lib points (source)](https://github.com/communityox/ox_lib/tree/master/imports/points) - batched distance loop
 - [ox_lib zones](https://coxdocs.dev/ox_lib/Modules/Zones/Shared)
-- [FiveM Cookbook — performance](https://cookbook.fivem.net/) — community patterns
+- [FiveM Cookbook - performance](https://cookbook.fivem.net/) - community patterns
 
 ---
 

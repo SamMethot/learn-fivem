@@ -2,7 +2,7 @@
 
 > Beginner-to-shipping FiveM coding course. Built by a working FiveM dev. No fluff, no padding, every Lua line explained.
 
-If you've ever opened a FiveM resource on GitHub and felt lost — this fixes that.
+If you've ever opened a FiveM resource on GitHub and felt lost - this fixes that.
 
 ---
 
@@ -15,7 +15,7 @@ You'll get the most out of this if you:
 - Don't know Lua. **You learn it here.**
 - Don't know FiveM internals. **Same.**
 
-Total beginners (never coded at all) — start with [freeCodeCamp's JavaScript course](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/) first. Come back when you're comfortable with `if`, `for`, and functions.
+Total beginners (never coded at all) - start with [freeCodeCamp's JavaScript course](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/) first. Come back when you're comfortable with `if`, `for`, and functions.
 
 ---
 
@@ -43,8 +43,8 @@ By the end:
 | **A MySQL client** ([HeidiSQL](https://www.heidisql.com/) on Windows, [DBeaver](https://dbeaver.io/) cross-platform) | To poke at the database |
 
 VS Code extensions worth installing day one:
-- [sumneko.lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) — Lua language server (autocomplete, errors)
-- [overextended.cfxlua-vscode](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode) — FiveM native autocomplete
+- [sumneko.lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) - Lua language server (autocomplete, errors)
+- [overextended.cfxlua-vscode](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode) - FiveM native autocomplete
 
 ---
 
@@ -75,12 +75,12 @@ If you feel lost, jump to [`INDEX.md`](INDEX.md) for the full map and shortcut p
 
 Every lesson follows the same shape so you know what to expect:
 
-1. **Plain-English summary** at the top — what is this, why do you care
-2. **Code examples with every line annotated** — no "magic" lines
-3. **Common mistakes** — the bugs that bite beginners
+1. **Plain-English summary** at the top - what is this, why do you care
+2. **Code examples with every line annotated** - no "magic" lines
+3. **Common mistakes** - the bugs that bite beginners
 4. **Optimization & security callouts** where they matter
-5. **TL;DR** — the takeaway in 5 bullets
-6. **Sources** — links to the official docs so you can dig deeper
+5. **TL;DR** - the takeaway in 5 bullets
+6. **Sources** - links to the official docs so you can dig deeper
 
 Code blocks look like this:
 
@@ -101,7 +101,7 @@ Every non-trivial line gets a comment. **You shouldn't have to guess what any li
 These come back in every lesson. Burn them in now:
 
 1. **Client = hostile. Server = trusted.** Always validate on the server. Never trust what the client sends.
-2. **No secrets in client code.** Players can read your client `.lua` files. Webhooks, API keys, prices — server only.
+2. **No secrets in client code.** Players can read your client `.lua` files. Webhooks, API keys, prices - server only.
 3. **`local src = source` is the first line of every server net event.** [Why](02-events/03-event-security.md).
 4. **Always parameterize SQL.** `?` placeholders, never string concatenation. [Why](04-database/02-queries-and-security.md).
 5. **Read a similar resource before writing a new one.** Patterns in the wild beat patterns from your head.
@@ -111,7 +111,7 @@ These come back in every lesson. Burn them in now:
 
 ## Assumed Stack
 
-Most examples target the modern FiveM roleplay stack. If your server differs, adapt — the core concepts stay identical.
+Most examples target the modern FiveM roleplay stack. If your server differs, adapt - the core concepts stay identical.
 
 | Thing | What we use | Common alternative |
 |-------|-------------|--------------------|
@@ -173,7 +173,7 @@ You'll see these words constantly:
 
 ## Contributing
 
-This repo is **MIT licensed** ([LICENSE](LICENSE)) and PR-friendly. If you spot a mistake, an outdated API, or know a better way — open a PR.
+This repo is **MIT licensed** ([LICENSE](LICENSE)) and PR-friendly. If you spot a mistake, an outdated API, or know a better way - open a PR.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules. Short version: keep the tone direct, keep examples runnable, no padding.
 
@@ -191,4 +191,4 @@ Don't skip. The earliest lessons are the ones every later lesson assumes.
 
 ## License
 
-MIT — do whatever you want, just don't sue me. See [LICENSE](LICENSE).
+MIT - do whatever you want, just don't sue me. See [LICENSE](LICENSE).

@@ -27,7 +27,7 @@ jobs:
       - name: Run lychee link checker
         uses: lycheeverse/lychee-action@v2
         with:
-          # exclude FiveM dynamic native search URLs (?_0xHASH) — they're alive but lychee 404s them
+          # exclude FiveM dynamic native search URLs (?_0xHASH) - they're alive but lychee 404s them
           args: >-
             --no-progress
             --max-concurrency 8

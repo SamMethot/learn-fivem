@@ -42,7 +42,7 @@ If you changed a code example, confirm:
 ## Updated Index?
 
 - [ ] Updated `INDEX.md` if I added or renamed files
-- [ ] N/A — didn't change file structure
+- [ ] N/A - didn't change file structure
 
 ## Additional Notes
 

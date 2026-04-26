@@ -2,7 +2,7 @@
 
 ## Plain English
 
-**NUI** = "New UI". It's the HTML/JavaScript layer that gets rendered on top of GTA V via an embedded browser called CEF (Chromium Embedded Framework). Phones, menus, HUDs, shops, crafting screens — all NUI.
+**NUI** = "New UI". It's the HTML/JavaScript layer that gets rendered on top of GTA V via an embedded browser called CEF (Chromium Embedded Framework). Phones, menus, HUDs, shops, crafting screens - all NUI.
 
 Think of NUI as **a small browser tab pinned over the game window**. Your client-side Lua talks to it by sending messages. The browser sends messages back via `fetch` (HTTP-style requests).
 
@@ -24,7 +24,7 @@ Two-way:
 - **Lua → JS:** `SendNUIMessage(table)` on Lua side; `window.addEventListener('message', ...)` on JS side
 - **JS → Lua:** `fetch('https://my_resource/callbackName')` on JS side; `RegisterNUICallback('callbackName', ...)` on Lua side
 
-The client can also forward to the server via `TriggerServerEvent` — the server NEVER talks to NUI directly.
+The client can also forward to the server via `TriggerServerEvent` - the server NEVER talks to NUI directly.
 
 ---
 
@@ -86,7 +86,7 @@ html, body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: transparent;    /* CRITICAL — without this, you get a black screen over the game */
+    background: transparent;    /* CRITICAL - without this, you get a black screen over the game */
 }
 
 #app {
@@ -101,7 +101,7 @@ html, body {
 }
 
 .hidden {
-    visibility: hidden;         /* NOT display:none — see "Golden Rules" below */
+    visibility: hidden;         /* NOT display:none - see "Golden Rules" below */
 }
 ```
 
@@ -135,7 +135,7 @@ document.getElementById('close').addEventListener('click', () => {
 });
 ```
 
-`GetParentResourceName()` is a global FiveM provides to the browser — returns your resource's name (e.g., `'my_ui'`). Use it in fetch URLs so the right resource handles the callback.
+`GetParentResourceName()` is a global FiveM provides to the browser - returns your resource's name (e.g., `'my_ui'`). Use it in fetch URLs so the right resource handles the callback.
 
 ### `client.lua`
 
@@ -145,7 +145,7 @@ local isOpen = false                                            -- track UI stat
 RegisterCommand('myui', function()                              -- /myui opens the menu
     if isOpen then return end                                   -- already open, ignore
     isOpen = true
-    SetNuiFocus(true, true)                                     -- (focusGrabbed, cursorVisible) — both true for clickable menus
+    SetNuiFocus(true, true)                                     -- (focusGrabbed, cursorVisible) - both true for clickable menus
     SendNUIMessage({ action = 'open' })                         -- tell the browser to show
 end)
 
@@ -154,7 +154,7 @@ RegisterNUICallback('close', function(data, cb)
     isOpen = false
     SetNuiFocus(false, false)                                   -- give control back to the game
     SendNUIMessage({ action = 'close' })
-    cb('ok')                                                    -- ALWAYS call cb() — the fetch hangs otherwise
+    cb('ok')                                                    -- ALWAYS call cb() - the fetch hangs otherwise
 end)
 
 -- ↓ CRITICAL: cleanup on resource stop
@@ -164,7 +164,7 @@ AddEventHandler('onResourceStop', function(r)
 end)
 ```
 
-`cb('ok')` is mandatory in every `RegisterNUICallback`. The browser's `fetch` is waiting for a response — if you skip `cb`, the request hangs forever.
+`cb('ok')` is mandatory in every `RegisterNUICallback`. The browser's `fetch` is waiting for a response - if you skip `cb`, the request hangs forever.
 
 ---
 
@@ -174,7 +174,7 @@ end)
 
 If you write your UI in React and do `{visible && <Menu />}`:
 
-- When `visible = false`, the `<Menu />` component is **unmounted** — its `useEffect`s are gone, its message listeners are gone.
+- When `visible = false`, the `<Menu />` component is **unmounted** - its `useEffect`s are gone, its message listeners are gone.
 - Lua sends `SendNUIMessage({ action: 'open' })`.
 - The handler that would set `visible = true` doesn't exist (it was inside the unmounted component).
 - **Nothing happens. UI never shows.**
@@ -299,7 +299,7 @@ RegisterNUICallback('buy', function(data, cb)
 end)
 ```
 
-The Lua callback receives `data` as a table (parsed from the JSON body). `cb` is a function — call it with whatever response you want the JS side to receive.
+The Lua callback receives `data` as a table (parsed from the JSON body). `cb` is a function - call it with whatever response you want the JS side to receive.
 
 ---
 
@@ -337,7 +337,7 @@ set nui_devtools_enabled 1
 `background: transparent` is missing on `body`. Check CSS.
 
 ### UI doesn't show data
-Conditional render pattern (`{visible && <Menu />}`) — listeners unmount. Switch to `visibility: hidden`.
+Conditional render pattern (`{visible && <Menu />}`) - listeners unmount. Switch to `visibility: hidden`.
 
 ### Can't close UI / player can't move
 `SetNuiFocus(false, false)` not called. Or you restarted the resource while UI was open without `onResourceStop` cleanup. F8 escape: type `restart your_resource` again.
@@ -364,10 +364,10 @@ The UI element has `pointer-events: none` somewhere up the tree, OR the page isn
 ## Sources
 
 - [FiveM NUI Development Guide](https://docs.fivem.net/docs/scripting-manual/nui-development/)
-- [SetNuiFocus](https://docs.fivem.net/natives/?_0x5B98AE30) — native reference
+- [SetNuiFocus](https://docs.fivem.net/natives/?_0x5B98AE30) - native reference
 - [SendNUIMessage](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/SendNUIMessage/)
 - [RegisterNUICallback](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RegisterNUICallback/)
-- [GetParentResourceName](https://docs.fivem.net/docs/scripting-reference/runtimes/javascript/functions/GetParentResourceName/) — JS-side global
+- [GetParentResourceName](https://docs.fivem.net/docs/scripting-reference/runtimes/javascript/functions/GetParentResourceName/) - JS-side global
 
 ---
 

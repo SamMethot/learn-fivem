@@ -4,7 +4,7 @@
 
 **oxmysql** is the standard MySQL wrapper for FiveM. It gives you an async API for running SQL queries from your server-side Lua. Fast, safe **if used correctly**, and used by virtually every modern resource.
 
-If you've used `mysql2` in Node, `psycopg2` in Python, or `JDBC` in Java — same idea, smaller API surface.
+If you've used `mysql2` in Node, `psycopg2` in Python, or `JDBC` in Java - same idea, smaller API surface.
 
 ---
 
@@ -49,11 +49,11 @@ MySQL.insert.await(sql, params)        -- returns the new auto-increment ID
 MySQL.update.await(sql, params)        -- returns the number of affected rows
 ```
 
-Each has a **non-`.await`** version that takes a callback function instead of returning the value. **Prefer `.await`** inside threads and event handlers — much cleaner.
+Each has a **non-`.await`** version that takes a callback function instead of returning the value. **Prefer `.await`** inside threads and event handlers - much cleaner.
 
 ---
 
-## Query — Multiple Rows
+## Query - Multiple Rows
 
 ```lua
 -- get all players matching a license
@@ -67,11 +67,11 @@ for _, row in ipairs(rows) do                                  -- rows is an arr
 end
 ```
 
-If no rows match, `rows` is an empty table `{}` — not `nil`. So `#rows == 0` means "nothing found".
+If no rows match, `rows` is an empty table `{}` - not `nil`. So `#rows == 0` means "nothing found".
 
 ---
 
-## Single — One Row
+## Single - One Row
 
 ```lua
 -- get one player by citizenid
@@ -89,7 +89,7 @@ end
 
 ---
 
-## Scalar — One Value
+## Scalar - One Value
 
 ```lua
 -- count players
@@ -210,7 +210,7 @@ MySQL.update.await(
 
 `json.encode` and `json.decode` are FiveM-provided globals. No `require` needed.
 
-In Qbox, you usually access these through `player.PlayerData.charinfo.firstname` directly — the framework decodes for you.
+In Qbox, you usually access these through `player.PlayerData.charinfo.firstname` directly - the framework decodes for you.
 
 ---
 
@@ -240,7 +240,7 @@ if not ok then
 end
 ```
 
-For most resources, just let errors bubble — if a query fails, you usually want loud noise, not silent skip.
+For most resources, just let errors bubble - if a query fails, you usually want loud noise, not silent skip.
 
 ---
 
@@ -325,8 +325,8 @@ Otherwise, fire up HeidiSQL/DBeaver and connect to your dev DB. Critical to know
 - [oxmysql docs (canonical)](https://coxdocs.dev/oxmysql)
 - [oxmysql GitHub](https://github.com/communityox/oxmysql)
 - [MySQL prepare/parameter syntax](https://dev.mysql.com/doc/refman/8.0/en/prepare.html)
-- [HeidiSQL](https://www.heidisql.com/) — Windows MySQL client
-- [DBeaver](https://dbeaver.io/) — cross-platform MySQL client
+- [HeidiSQL](https://www.heidisql.com/) - Windows MySQL client
+- [DBeaver](https://dbeaver.io/) - cross-platform MySQL client
 
 ---
 

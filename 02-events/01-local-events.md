@@ -6,7 +6,7 @@ Events = how code in one part of FiveM tells other code "this thing happened, re
 
 **Local events stay on the same side.** A client local event can only be heard by other client code. A server local event can only be heard by other server code. They don't cross the network.
 
-If you've used JavaScript's `addEventListener` / `dispatchEvent`, this is almost the same idea — just for Lua, with FiveM-specific built-ins.
+If you've used JavaScript's `addEventListener` / `dispatchEvent`, this is almost the same idea - just for Lua, with FiveM-specific built-ins.
 
 ---
 
@@ -31,9 +31,9 @@ That's it. Fire and forget. No return value. Every registered handler runs in re
 
 Three big reasons:
 
-1. **Decoupling.** File A fires an event. Files B, C, D listen. A doesn't need to know who listens. New listener? Just add a handler — no changes to A.
+1. **Decoupling.** File A fires an event. Files B, C, D listen. A doesn't need to know who listens. New listener? Just add a handler - no changes to A.
 2. **Built-in lifecycle hooks.** FiveM fires events when players join, spawn, die, leave, enter vehicles, etc. Listen for them instead of polling.
-3. **Cross-resource communication on the same side** — Resource A's server code can fire an event that Resource B's server code listens for. No network.
+3. **Cross-resource communication on the same side** - Resource A's server code can fire an event that Resource B's server code listens for. No network.
 
 ---
 
@@ -59,14 +59,14 @@ end)
 -- fires for every resource that starts. check if it's yours.
 AddEventHandler('onResourceStart', function(name)
     if name == GetCurrentResourceName() then        -- only react to YOUR resource starting
-        print('my resource started — do init here')
+        print('my resource started - do init here')
     end
 end)
 
 -- fires for every resource that stops. cleanup goes here.
 AddEventHandler('onResourceStop', function(name)
     if name == GetCurrentResourceName() then
-        print('my resource stopped — do cleanup here')
+        print('my resource stopped - do cleanup here')
     end
 end)
 ```
@@ -86,7 +86,7 @@ AddEventHandler('playerSpawned', function()
     print('I just spawned')
 end)
 
--- fires for every "game event" — vehicle entered, ped damaged, etc.
+-- fires for every "game event" - vehicle entered, ped damaged, etc.
 -- THIS IS GOLD. Replaces polling for many things.
 AddEventHandler('gameEventTriggered', function(name, args)
     if name == 'CEventNetworkPlayerEnteredVehicle' then
@@ -97,7 +97,7 @@ AddEventHandler('gameEventTriggered', function(name, args)
 end)
 ```
 
-[Full list of game events](https://docs.fivem.net/docs/game-references/game-events/) — bookmark it.
+[Full list of game events](https://docs.fivem.net/docs/game-references/game-events/) - bookmark it.
 
 ---
 
@@ -118,7 +118,7 @@ AddEventHandler('my:event', myHandler)              -- start listening
 RemoveEventHandler('my:event', myHandler)           -- stop listening
 ```
 
-You CAN'T remove an anonymous function — you need a named reference. Use this when a handler should only be active for a limited time (during a minigame, a tutorial, etc.).
+You CAN'T remove an anonymous function - you need a named reference. Use this when a handler should only be active for a limited time (during a minigame, a tutorial, etc.).
 
 ---
 
@@ -128,14 +128,14 @@ Use **colons to separate scopes**:
 
 ```
 playerLoaded                      ← FiveM built-in (just a single word)
-qb-inventory:server:addItem       ← resource:side:action — common pattern
+qb-inventory:server:addItem       ← resource:side:action - common pattern
 myresource:client:refresh
 myresource:shop:buy
 ```
 
 Why prefix with the resource name? **You can grep across the whole server folder** to find every fire and every listen of a given event. Naming chaos = debugging hell.
 
-This isn't enforced by FiveM — but every modern resource follows the convention.
+This isn't enforced by FiveM - but every modern resource follows the convention.
 
 ---
 
@@ -175,7 +175,7 @@ TriggerEvent('player:dies')
 -- second listener
 ```
 
-This is intentional — multiple subsystems can react to the same event independently.
+This is intentional - multiple subsystems can react to the same event independently.
 
 ---
 
@@ -193,7 +193,7 @@ AddEventHandler('shared:notify', function(msg)
 end)
 ```
 
-**But:** if A is on the client and B is on the server, this does NOT work — that's a different side, you need a **net event** instead. Covered in the next lesson.
+**But:** if A is on the client and B is on the server, this does NOT work - that's a different side, you need a **net event** instead. Covered in the next lesson.
 
 ---
 
@@ -255,7 +255,7 @@ local function updateMoney(newAmount)
 end
 ```
 
-This is the observer pattern — emit a fact, anyone interested reacts.
+This is the observer pattern - emit a fact, anyone interested reacts.
 
 ---
 
@@ -263,10 +263,10 @@ This is the observer pattern — emit a fact, anyone interested reacts.
 
 - `AddEventHandler('name', fn)` listens.
 - `TriggerEvent('name', ...)` fires.
-- Same side only — client→client OR server→server.
+- Same side only - client→client OR server→server.
 - Multiple handlers for the same event all run, in order.
 - Args are anything serializable: numbers, strings, booleans, tables.
-- FiveM ships tons of built-in events — `playerJoining`, `playerDropped`, `gameEventTriggered`, etc. Use them instead of polling.
+- FiveM ships tons of built-in events - `playerJoining`, `playerDropped`, `gameEventTriggered`, etc. Use them instead of polling.
 
 ---
 
@@ -276,8 +276,8 @@ This is the observer pattern — emit a fact, anyone interested reacts.
 - [TriggerEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/TriggerEvent/)
 - [RemoveEventHandler](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RemoveEventHandler/)
 - [Working With Events (overview)](https://docs.fivem.net/docs/scripting-manual/working-with-events/)
-- [Game Events list](https://docs.fivem.net/docs/game-references/game-events/) — every event the engine fires
-- [Resource Lifecycle Events](https://docs.fivem.net/docs/scripting-reference/events/list/) — onResourceStart, etc.
+- [Game Events list](https://docs.fivem.net/docs/game-references/game-events/) - every event the engine fires
+- [Resource Lifecycle Events](https://docs.fivem.net/docs/scripting-reference/events/list/) - onResourceStart, etc.
 
 ---
 

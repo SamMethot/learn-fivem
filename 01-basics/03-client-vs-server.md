@@ -20,13 +20,13 @@ That's the whole game.
 | | Client | Server |
 |---|--------|--------|
 | Where it runs | Player's PC | Your server machine |
-| Trust level | **Hostile** — never trust it | **Trusted** — source of truth |
+| Trust level | **Hostile** - never trust it | **Trusted** - source of truth |
 | Has database access? | No | Yes |
 | Has player money? | No (a copy for display only) | Yes (the real number) |
 | Can spawn cars? | Yes (visually) | Yes (and tells clients to render them) |
 | Reads keyboard? | Yes | No |
 | Draws UI? | Yes | No |
-| Validates events? | No | **Yes — always** |
+| Validates events? | No | **Yes - always** |
 
 Real example: a player wants to buy bread.
 
@@ -63,7 +63,7 @@ client_script 'client/main.lua'
 -- this file runs on the server
 server_script 'server/main.lua'
 
--- this file runs on BOTH sides — useful for config tables
+-- this file runs on BOTH sides - useful for config tables
 shared_script 'shared/config.lua'
 ```
 
@@ -98,7 +98,7 @@ What client code **cannot** do:
 What server code **cannot** do:
 - Read the player's keyboard
 - Draw on the player's screen directly (it sends events to clients to do that)
-- Spawn entities locally — it asks a client to spawn them
+- Spawn entities locally - it asks a client to spawn them
 
 ---
 
@@ -118,25 +118,25 @@ Config.Shop = {
 
 Then in `client/main.lua` and `server/main.lua`, you can both do `print(Config.Shop.coords)`.
 
-**Beware:** putting prices in shared config means clients can read them. That's usually fine for display — but use server-side config for **authoritative** prices, formulas, and discount logic.
+**Beware:** putting prices in shared config means clients can read them. That's usually fine for display - but use server-side config for **authoritative** prices, formulas, and discount logic.
 
 ---
 
 ## Example: Buying An Item (Wrong vs Right)
 
-### Wrong — client authority (EXPLOITABLE)
+### Wrong - client authority (EXPLOITABLE)
 
 ```lua
 -- client/main.lua
 RegisterCommand('buy', function()       -- registers the /buy command
-    AddMoney(-10)                       -- client subtracts $10 — but the player can edit this line out!
-    AddItem('bread', 1)                 -- client adds 1 bread — exploit: spam this command
+    AddMoney(-10)                       -- client subtracts $10 - but the player can edit this line out!
+    AddItem('bread', 1)                 -- client adds 1 bread - exploit: spam this command
 end)
 ```
 
 A player edits their client Lua. Comments out the `AddMoney(-10)` line. Now they get bread for free. Forever.
 
-### Right — server authority (SAFE)
+### Right - server authority (SAFE)
 
 ```lua
 -- client/main.lua
@@ -154,7 +154,7 @@ RegisterNetEvent('shop:buy', function(itemId)           -- listen for the buy ev
     if itemId ~= 'bread' then return end                -- whitelist: only "bread" is allowed via this event
 
     local player = exports.qbx_core:GetPlayer(src)      -- get the Qbox player object for this src
-    if not player then return end                       -- player not loaded yet — bail
+    if not player then return end                       -- player not loaded yet - bail
     if player.PlayerData.money.cash < 10 then return end -- can they afford it? if not, bail
 
     player.Functions.RemoveMoney('cash', 10, 'bread buy') -- atomically take $10 (logged with reason)
@@ -176,7 +176,7 @@ The client just sends a request. The server checks **everything** and decides.
 | Client → itself | Same side only | `TriggerEvent('name', ...)` |
 | Server → itself | Same side only | `TriggerEvent('name', ...)` |
 
-**`TriggerEvent` does NOT cross sides.** If you call it on the server, only server-side handlers get it. Confusing newbies for years — burn it in.
+**`TriggerEvent` does NOT cross sides.** If you call it on the server, only server-side handlers get it. Confusing newbies for years - burn it in.
 
 Full deep-dive in [`02-events/`](../02-events/).
 
@@ -201,7 +201,7 @@ If you call a server-only native from the client, it errors or no-ops. Always ch
 
 ## Don't Trust Client Input
 
-Anything that arrives on the server through `RegisterNetEvent` — args, IDs, amounts, item names — is attacker-controlled. **Validate everything.**
+Anything that arrives on the server through `RegisterNetEvent` - args, IDs, amounts, item names - is attacker-controlled. **Validate everything.**
 
 ```lua
 RegisterNetEvent('shop:buy', function(itemId, qty)
@@ -234,13 +234,13 @@ RegisterNetEvent('my:event', function(data)
 end)
 ```
 
-Why? Because `source` can change if your handler does another event call or yields. `src` is a local — it never changes. Use `src`. Always.
+Why? Because `source` can change if your handler does another event call or yields. `src` is a local - it never changes. Use `src`. Always.
 
 ---
 
 ## Can The Client See Server Files?
 
-**No** — server-only files (`server_script`, files NOT in the `files {}` list) stay on the server. Client never downloads them.
+**No** - server-only files (`server_script`, files NOT in the `files {}` list) stay on the server. Client never downloads them.
 
 **But** the client DOES download:
 - All `client_script` files
@@ -249,7 +249,7 @@ Why? Because `source` can change if your handler does another event call or yiel
 
 Players can find those in the FiveM cache folder on their PC. Treat anything client-side as **publicly readable**. Don't put webhooks, API keys, or admin secrets there.
 
-If your **server code** leaks (someone publishes the repo, a cloud bucket goes public), server secrets leak too. Use `convars` for anything sensitive — they live in `server.cfg` and aren't bundled with code:
+If your **server code** leaks (someone publishes the repo, a cloud bucket goes public), server secrets leak too. Use `convars` for anything sensitive - they live in `server.cfg` and aren't bundled with code:
 
 ```lua
 -- in server.cfg:
@@ -263,11 +263,11 @@ local webhook = GetConvar('my_webhook', '')   -- second arg = default if convar 
 
 ## Common Beginner Mistakes
 
-1. **"Just do money on the client, it's easier"** — first dupe bug within a week. Money lives server-side.
-2. **Trusting `TriggerServerEvent` args without validation** — parameter injection, free items, instant level 99.
-3. **Trying to query MySQL from the client** — impossible, the DB only exists server-side.
-4. **Forgetting `local src = source`** — `source` mutates mid-function, weird bugs that are hours to track.
-5. **Using `TriggerEvent` when you needed `TriggerServerEvent` or `TriggerClientEvent`** — silently does nothing, you wonder why.
+1. **"Just do money on the client, it's easier"** - first dupe bug within a week. Money lives server-side.
+2. **Trusting `TriggerServerEvent` args without validation** - parameter injection, free items, instant level 99.
+3. **Trying to query MySQL from the client** - impossible, the DB only exists server-side.
+4. **Forgetting `local src = source`** - `source` mutates mid-function, weird bugs that are hours to track.
+5. **Using `TriggerEvent` when you needed `TriggerServerEvent` or `TriggerClientEvent`** - silently does nothing, you wonder why.
 
 ---
 
@@ -278,16 +278,16 @@ local webhook = GetConvar('my_webhook', '')   -- second arg = default if convar 
 - Money, inventory, jobs, DB → server-side ALWAYS.
 - Every net event needs server-side validation.
 - `local src = source` first line of every server net event.
-- Don't trust args — type-check, range-check, whitelist-check.
+- Don't trust args - type-check, range-check, whitelist-check.
 
 ---
 
 ## Sources
 
-- [Scripting Manual Introduction](https://docs.fivem.net/docs/scripting-manual/introduction/) — official client/server explainer
-- [Lua Runtime Reference](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) — what each side can call
-- [OneSync](https://docs.fivem.net/docs/scripting-reference/onesync/) — networked entity model
-- [GetConvar](https://docs.fivem.net/natives/?_0x6B0DE401) — reading server config
+- [Scripting Manual Introduction](https://docs.fivem.net/docs/scripting-manual/introduction/) - official client/server explainer
+- [Lua Runtime Reference](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) - what each side can call
+- [OneSync](https://docs.fivem.net/docs/scripting-reference/onesync/) - networked entity model
+- [GetConvar](https://docs.fivem.net/natives/?_0x6B0DE401) - reading server config
 
 ---
 

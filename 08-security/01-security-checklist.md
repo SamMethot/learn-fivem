@@ -57,10 +57,10 @@ if not price then return end
 ### 3. Server Is Source Of Truth For Money
 
 ```lua
--- BAD — client decides what to charge
+-- BAD - client decides what to charge
 local price = clientSentPrice
 
--- GOOD — server config decides
+-- GOOD - server config decides
 local price = CONFIG.PRICES[itemId]
 ```
 
@@ -74,13 +74,13 @@ local cash = player.PlayerData.money.cash
 if cash < price then return end
 player.Functions.RemoveMoney('cash', price, 'buy')              -- two parallel events both pass the check, both deduct
 
--- GOOD: framework's RemoveMoney is atomic — returns false if insufficient
+-- GOOD: framework's RemoveMoney is atomic - returns false if insufficient
 if not player.Functions.RemoveMoney('cash', price, 'buy') then
     return                                                       -- didn't have enough money
 end
 ```
 
-Or use a conditional MySQL UPDATE — covered in [`04-database/02-queries-and-security.md`](../04-database/02-queries-and-security.md).
+Or use a conditional MySQL UPDATE - covered in [`04-database/02-queries-and-security.md`](../04-database/02-queries-and-security.md).
 
 ### 5. Job / Role Checks On Every Privileged Event
 
@@ -106,7 +106,7 @@ local pos = GetEntityCoords(ped)                                -- server reads 
 if #(pos - CONFIG_COORDS) > 3.0 then return end                 -- more than 3m from shop, bail
 ```
 
-Server reads player position from the synced entity state — not from a client-supplied arg. Stops "use shop from across the map" exploits.
+Server reads player position from the synced entity state - not from a client-supplied arg. Stops "use shop from across the map" exploits.
 
 ### 7. Rate Limiting
 
@@ -176,7 +176,7 @@ When (not if) an exploit happens, the log tells you who and how. Without logs, y
 
 ## Client Event Exposure
 
-Every `RegisterNetEvent` is a public API. **Name doesn't matter** — `secret:event` is no more secret than `public:event`. Players can fire:
+Every `RegisterNetEvent` is a public API. **Name doesn't matter** - `secret:event` is no more secret than `public:event`. Players can fire:
 
 ```lua
 TriggerServerEvent('secret:event', anyArgs)
@@ -189,13 +189,13 @@ Treat every registered net event as if a malicious player was about to call it w
 ## Don't Leak Admin Events
 
 ```lua
--- BAD — any player can trigger this and give themselves money
+-- BAD - any player can trigger this and give themselves money
 RegisterNetEvent('admin:giveMoney', function(target, amount)
     local player = exports.qbx_core:GetPlayer(target)
     player.Functions.AddMoney('cash', amount)
 end)
 
--- GOOD — gate it with ACE
+-- GOOD - gate it with ACE
 RegisterNetEvent('admin:giveMoney', function(target, amount)
     local src = source
     if not IsPlayerAceAllowed(src, 'admin.money') then
@@ -215,7 +215,7 @@ RegisterCommand('givemoney', function(source, args)
 end, true)                                                       -- true = restricted to ACE
 ```
 
-Then players can't fire it from a console — only the server (`source == 0`) or ACE-allowed admins can run the command.
+Then players can't fire it from a console - only the server (`source == 0`) or ACE-allowed admins can run the command.
 
 ---
 
@@ -272,11 +272,11 @@ Convars are server-only. **Never bundled with client downloads.**
 The client that "owns" an entity can modify its state. If you spawn something server-side and want server-controlled state, use:
 
 ```lua
--- ↓ server-side spawn — server-owned entity, harder to modify client-side
+-- ↓ server-side spawn - server-owned entity, harder to modify client-side
 local veh = CreateVehicleServerSetter(modelHash, 'automobile', x, y, z, heading)
 ```
 
-Qbox / newer wrappers expose helpers that handle this for you — check your framework docs.
+Qbox / newer wrappers expose helpers that handle this for you - check your framework docs.
 
 ---
 
@@ -346,12 +346,12 @@ If a resource skips ANY of these, it's exploitable.
 ## Sources
 
 - [FiveM Event Security Manual](https://docs.fivem.net/docs/scripting-manual/working-with-events/)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) — universal app sec principles
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - universal app sec principles
 - [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
 - [FiveM ACE Permissions](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#permissions)
 - [GetConvar](https://docs.fivem.net/natives/?_0x6B0DE401)
-- [DropPlayer](https://docs.fivem.net/natives/?_0x4D2A28D7) — kick natively
+- [DropPlayer](https://docs.fivem.net/natives/?_0x4D2A28D7) - kick natively
 
 ---
 
-Next folder: [`09-performance/`](../09-performance/) — start with [`01-threads-and-waits.md`](../09-performance/01-threads-and-waits.md)
+Next folder: [`09-performance/`](../09-performance/) - start with [`01-threads-and-waits.md`](../09-performance/01-threads-and-waits.md)

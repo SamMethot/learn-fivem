@@ -46,11 +46,11 @@ my_resource/
     └── en.lua              ← translation file
 ```
 
-Don't memorize this — adapt it per project. Smaller resources don't need every folder.
+Don't memorize this - adapt it per project. Smaller resources don't need every folder.
 
 ---
 
-## fxmanifest.lua — Line By Line
+## fxmanifest.lua - Line By Line
 
 The basic shape, every line annotated:
 
@@ -191,7 +191,7 @@ data_file 'VEHICLE_METADATA_FILE' 'data/vehicles.meta'
 data_file 'CARCOLS_FILE' 'data/carcols.meta'
 ```
 
-Anything inside a `stream/` subfolder gets **auto-streamed** to clients — they download it when they join. That's how custom cars and clothing work.
+Anything inside a `stream/` subfolder gets **auto-streamed** to clients - they download it when they join. That's how custom cars and clothing work.
 
 ---
 
@@ -204,11 +204,11 @@ Tells the server "I am a substitute for resource X":
 provide 'mysql-async'
 ```
 
-You'll rarely write this — it's mostly for compat shims (Qbox provides `qb-core`, oxmysql provides `mysql-async`).
+You'll rarely write this - it's mostly for compat shims (Qbox provides `qb-core`, oxmysql provides `mysql-async`).
 
 ---
 
-## Real Example — A Qbox Core Resource
+## Real Example - A Qbox Core Resource
 
 This is roughly what `qbx_core/fxmanifest.lua` looks like:
 
@@ -304,7 +304,7 @@ resources/
     └── old_script/
 ```
 
-**`[brackets]` = category folders.** They're not loaded as resources themselves — they're just for grouping. The server scans recursively and finds resources by their `fxmanifest.lua`.
+**`[brackets]` = category folders.** They're not loaded as resources themselves - they're just for grouping. The server scans recursively and finds resources by their `fxmanifest.lua`.
 
 **`noload/`** is a convention. Whatever folder isn't `ensure`d in `server.cfg` is disabled. Calling it `noload` is a common pattern, but the name is arbitrary.
 
@@ -312,13 +312,13 @@ resources/
 
 ## Best Practices
 
-1. **Resource names**: lowercase + underscores. `my_shop`, `player_armory`. **No spaces, no hyphens, no special chars** — exports break.
+1. **Resource names**: lowercase + underscores. `my_shop`, `player_armory`. **No spaces, no hyphens, no special chars** - exports break.
 2. **Use `shared_script '@ox_lib/init.lua'`** to enable `lib.*` everywhere.
 3. **Configs in `shared/` or `config/`**. Scripts in `client/` and `server/`.
-4. **Always declare `dependencies {}`** — fail-fast over weird load-order bugs.
-5. **`onResourceStop` cleanup** — NUI focus, blips, spawned entities, threads.
-6. **Don't name your resource the same as an existing one** — load order chaos.
-7. **Don't put `.lua` files in `files {}`** — they already load via `*_script`. Listing them in `files{}` makes them downloadable to clients (a security issue).
+4. **Always declare `dependencies {}`** - fail-fast over weird load-order bugs.
+5. **`onResourceStop` cleanup** - NUI focus, blips, spawned entities, threads.
+6. **Don't name your resource the same as an existing one** - load order chaos.
+7. **Don't put `.lua` files in `files {}`** - they already load via `*_script`. Listing them in `files{}` makes them downloadable to clients (a security issue).
 
 ---
 
@@ -355,10 +355,10 @@ In-game chat works too if you have ACE permission:
 
 ## Sources
 
-- [Resource Manifest Reference](https://docs.fivem.net/docs/scripting-reference/resource-manifest/resource-manifest/) — every field documented
-- [Introduction to Resources](https://docs.fivem.net/docs/scripting-manual/introduction/introduction-to-resources/) — concepts
-- [Server commands](https://docs.fivem.net/docs/server-manual/server-commands/) — `ensure`, `start`, `restart`
+- [Resource Manifest Reference](https://docs.fivem.net/docs/scripting-reference/resource-manifest/resource-manifest/) - every field documented
+- [Introduction to Resources](https://docs.fivem.net/docs/scripting-manual/introduction/introduction-to-resources/) - concepts
+- [Server commands](https://docs.fivem.net/docs/server-manual/server-commands/) - `ensure`, `start`, `restart`
 
 ---
 
-Next folder: [`02-events/`](../02-events/) — start with [`01-local-events.md`](../02-events/01-local-events.md)
+Next folder: [`02-events/`](../02-events/) - start with [`01-local-events.md`](../02-events/01-local-events.md)

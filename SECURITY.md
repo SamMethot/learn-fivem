@@ -9,7 +9,7 @@ This repo is an educational resource. It contains **example FiveM Lua code** for
 If you find an example in a lesson that:
 
 - Teaches a pattern that creates an **actual exploit** on a real server (e.g., a "buy item" example missing critical validation)
-- Hardcodes a **secret** (webhook, key, password) — even a fake one — in a way that misleads readers
+- Hardcodes a **secret** (webhook, key, password) - even a fake one - in a way that misleads readers
 - **Misrepresents safe practice** in a way that could trick someone into shipping vulnerable code
 
 …that's a security issue. Please report it privately so it can be fixed before more people copy the bad pattern.
@@ -18,7 +18,7 @@ If you find an example in a lesson that:
 
 - A general bug in an example (open a normal issue)
 - A typo, broken link, outdated API reference (open a normal issue or just PR the fix)
-- A vulnerability in `ox_lib`, `oxmysql`, or any third-party resource — report those to the maintainers of those projects, not here
+- A vulnerability in `ox_lib`, `oxmysql`, or any third-party resource - report those to the maintainers of those projects, not here
 
 ## How To Report
 
@@ -26,7 +26,7 @@ If you find an example in a lesson that:
 
 Instead:
 
-1. **Email the maintainer** — see the email in the GitHub profile of the repo owner.
+1. **Email the maintainer** - see the email in the GitHub profile of the repo owner.
 2. Or use [GitHub Private Vulnerability Reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability) if enabled on this repo.
 
 Include:

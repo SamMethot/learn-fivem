@@ -2,7 +2,7 @@
 
 ## Plain English
 
-Your **framework** (Qbox/QBCore/ESX) doesn't handle items by itself. A separate **inventory resource** does. The most common (and what this lesson focuses on) is **ox_inventory** — open source, actively maintained, community standard.
+Your **framework** (Qbox/QBCore/ESX) doesn't handle items by itself. A separate **inventory resource** does. The most common (and what this lesson focuses on) is **ox_inventory** - open source, actively maintained, community standard.
 
 Other inventories you'll see in the wild:
 
@@ -13,7 +13,7 @@ Other inventories you'll see in the wild:
 | **tgiann-inventory** | Paid, premium features (used by HRRP and similar prod servers) |
 | **qs-inventory** | Paid |
 
-The API differs between them. **This lesson assumes ox_inventory.** If your server runs something else, the concepts are the same — check that resource's docs for the export names.
+The API differs between them. **This lesson assumes ox_inventory.** If your server runs something else, the concepts are the same - check that resource's docs for the export names.
 
 ---
 
@@ -51,11 +51,11 @@ Items are defined in `data/items.lua` (inside ox_inventory):
 ```
 
 Key fields:
-- `label` — display name
-- `weight` — grams, affects total inventory weight
-- `stack` — items merge into one slot if true
-- `close` — closes inventory UI on use (most consumables: true)
-- `client.event` — local event fired when the player uses the item
+- `label` - display name
+- `weight` - grams, affects total inventory weight
+- `stack` - items merge into one slot if true
+- `close` - closes inventory UI on use (most consumables: true)
+- `client.event` - local event fired when the player uses the item
 
 Add your custom items here, then restart `ox_inventory`.
 
@@ -90,7 +90,7 @@ end
 local removed = exports.ox_inventory:RemoveItem(source, 'bread', 1)
 
 if not removed then
-    -- player didn't have the item — they may be lying
+    -- player didn't have the item - they may be lying
     return
 end
 ```
@@ -138,9 +138,9 @@ Useful for "do you have at least N of X?" gates.
 
 ---
 
-## Usable Items — Server-Side Hook (Recommended)
+## Usable Items - Server-Side Hook (Recommended)
 
-When an item has `client.event` defined, the CLIENT event fires when the player uses it. **For security-sensitive items, use the server-side hook instead** — clients can fake the use event:
+When an item has `client.event` defined, the CLIENT event fires when the player uses it. **For security-sensitive items, use the server-side hook instead** - clients can fake the use event:
 
 ```lua
 -- ↓ server side: register a hook for "item used"
@@ -158,7 +158,7 @@ For purely cosmetic stuff (animations, UI), the client event is fine.
 
 ---
 
-## Shops — Built-In
+## Shops - Built-In
 
 ox_inventory ships its own shop system. Define shops in `data/shops.lua`:
 
@@ -179,13 +179,13 @@ General = {
 },
 ```
 
-ox_inventory handles money deduction, item add, and stock atomically. **You write zero Lua — just config.** Highly recommended for static shops.
+ox_inventory handles money deduction, item add, and stock atomically. **You write zero Lua - just config.** Highly recommended for static shops.
 
 ---
 
 ## Stashes (Player Storage)
 
-Personal containers, group containers, evidence lockers — all "stashes":
+Personal containers, group containers, evidence lockers - all "stashes":
 
 ```lua
 -- ↓ open a stash from client or server
@@ -240,14 +240,14 @@ exports.ox_inventory:AddItem(src, 'bread', 1)
 API shape is similar but the export names differ:
 
 ```lua
--- qb-inventory (note the brackets — hyphenated name)
+-- qb-inventory (note the brackets - hyphenated name)
 exports['qb-inventory']:AddItem(src, 'bread', 1)
 
 -- ox_inventory (underscore name, no brackets)
 exports.ox_inventory:AddItem(src, 'bread', 1)
 ```
 
-qb-inventory often integrates through `Player.Functions.AddItem` via the framework. ox_inventory talks directly to the inventory resource without going through Qbox/QBCore — slightly more direct.
+qb-inventory often integrates through `Player.Functions.AddItem` via the framework. ox_inventory talks directly to the inventory resource without going through Qbox/QBCore - slightly more direct.
 
 ---
 
@@ -257,7 +257,7 @@ qb-inventory often integrates through `Player.Functions.AddItem` via the framewo
 - Server adds/removes items only. Always.
 - Always `CanCarryItem` before adding. Always check `RemoveItem`'s return before rewarding.
 - Use server-side hook `registerHook('usedItem', ...)` for sensitive item-use logic.
-- Built-in shops + stashes save you a lot of code — just write the config.
+- Built-in shops + stashes save you a lot of code - just write the config.
 
 ---
 
@@ -266,8 +266,8 @@ qb-inventory often integrates through `Player.Functions.AddItem` via the framewo
 - [ox_inventory docs](https://coxdocs.dev/ox_inventory)
 - [ox_inventory GitHub](https://github.com/communityox/ox_inventory)
 - [qb-inventory (alternative)](https://github.com/qbcore-framework/qb-inventory)
-- [tgiann-inventory](https://docs.tgiann.com/) — paid alt (FYI)
+- [tgiann-inventory](https://docs.tgiann.com/) - paid alt (FYI)
 
 ---
 
-Next folder: [`07-nui/`](../07-nui/) — start with [`01-nui-basics.md`](../07-nui/01-nui-basics.md)
+Next folder: [`07-nui/`](../07-nui/) - start with [`01-nui-basics.md`](../07-nui/01-nui-basics.md)

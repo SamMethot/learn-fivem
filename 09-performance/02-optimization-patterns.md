@@ -2,7 +2,7 @@
 
 ## Plain English
 
-Beyond `Wait` discipline (previous file), there's a set of patterns that cut CPU without cutting features. Apply them as you write — easier than retrofitting later.
+Beyond `Wait` discipline (previous file), there's a set of patterns that cut CPU without cutting features. Apply them as you write - easier than retrofitting later.
 
 ---
 
@@ -113,7 +113,7 @@ end
 
 If 50 players earn 10 coins/min, that's 500 queries/min just for "+1 coin".
 
-### Good — In-Memory Queue + Periodic Flush
+### Good - In-Memory Queue + Periodic Flush
 
 ```lua
 local dirty = {}                                                        -- cid → pending coin delta
@@ -144,7 +144,7 @@ AddEventHandler('playerDropped', function(src)
 end)
 ```
 
-Tradeoff: up to 30s of coin loss on a server crash. **Acceptable for non-money** — for actual cash, use atomic per-event writes.
+Tradeoff: up to 30s of coin loss on a server crash. **Acceptable for non-money** - for actual cash, use atomic per-event writes.
 
 ---
 
@@ -191,7 +191,7 @@ Save `GetGamePool` for one-shot operations (cleanup on resource stop, debug comm
 
 Each thread = its own coroutine + scheduler overhead. Don't spawn one per NPC.
 
-### Bad — 100 threads for 100 NPCs
+### Bad - 100 threads for 100 NPCs
 
 ```lua
 for _, npc in ipairs(npcs) do
@@ -204,7 +204,7 @@ for _, npc in ipairs(npcs) do
 end
 ```
 
-### Good — one thread, iterate
+### Good - one thread, iterate
 
 ```lua
 CreateThread(function()
@@ -312,9 +312,9 @@ Only send on **actual changes**. Aggressive throttling on HUDs is a huge win.
 
 Don't guess. Tools:
 
-- **`resmon`** in F8 console — quick per-resource CPU
-- **`profiler record 500` + `profiler save x.json`** — open in Chrome DevTools for flame chart
-- **MCP `resmon_snapshot` + `benchmark_compare`** — before/after numbers
+- **`resmon`** in F8 console - quick per-resource CPU
+- **`profiler record 500` + `profiler save x.json`** - open in Chrome DevTools for flame chart
+- **MCP `resmon_snapshot` + `benchmark_compare`** - before/after numbers
 
 Optimizing cold code = wasted effort. Find the 20% of code eating 80% of CPU first.
 
@@ -416,11 +416,11 @@ Gate by distance, by visibility, by "am I involved". Idle work is a tax on the w
 
 - [FiveM profiler docs](https://docs.fivem.net/docs/scripting-reference/profiler/)
 - [State Bags](https://docs.fivem.net/docs/scripting-manual/networking/state-bags/)
-- [FiveM Cookbook (performance)](https://cookbook.fivem.net/) — community patterns
+- [FiveM Cookbook (performance)](https://cookbook.fivem.net/) - community patterns
 - [ox_lib points (source)](https://github.com/communityox/ox_lib/tree/master/imports/points)
 - [ox_lib zones](https://coxdocs.dev/ox_lib/Modules/Zones/Shared)
-- [Lua performance tips](https://www.lua.org/gems/sample.pdf) — official Lua perf guide
+- [Lua performance tips](https://www.lua.org/gems/sample.pdf) - official Lua perf guide
 
 ---
 
-Next folder: [`10-first-projects/`](../10-first-projects/) — start with [`01-hello-resource.md`](../10-first-projects/01-hello-resource.md)
+Next folder: [`10-first-projects/`](../10-first-projects/) - start with [`01-hello-resource.md`](../10-first-projects/01-hello-resource.md)

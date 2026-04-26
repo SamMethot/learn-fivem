@@ -10,14 +10,14 @@ This file is the checklist. Apply every single point to every single net event h
 
 ---
 
-## Threat Model — What Attackers Can Actually Do
+## Threat Model - What Attackers Can Actually Do
 
 An attacker on your server is **a player with a FiveM client**. They have:
 
-- **Full client Lua control** — they can modify any client `.lua` file you ship them
+- **Full client Lua control** - they can modify any client `.lua` file you ship them
 - **Cheat menus** (Redengine, Eulen, Susano, dozens more) that inject Lua into running clients
-- **Console access** — can manually run `TriggerServerEvent('anything', anything)` from their F8
-- **Time** — they sit there and try 1,000 variations of arguments to find what works
+- **Console access** - can manually run `TriggerServerEvent('anything', anything)` from their F8
+- **Time** - they sit there and try 1,000 variations of arguments to find what works
 
 What they **can't** do:
 
@@ -60,20 +60,20 @@ RegisterNetEvent('shop:buy', function(itemId, qty)
         return                                                  -- wrong job, bail
     end
 
-    -- 7. GAME STATE — is the player in a state where this makes sense?
+    -- 7. GAME STATE - is the player in a state where this makes sense?
     if IsPedDeadOrDying(GetPlayerPed(src), true) then return end -- can't buy while dead
 
-    -- 8. LOCATION — is the player physically near the shop?
+    -- 8. LOCATION - is the player physically near the shop?
     local coords = GetEntityCoords(GetPlayerPed(src))
     if #(coords - Config.ShopCoords) > 5.0 then                -- "#(a-b)" = distance between vector3s
         logSuspicious(src, 'shop:buy', 'too far from shop')
         return
     end
 
-    -- 9. RATE LIMIT — not spamming?
+    -- 9. RATE LIMIT - not spamming?
     if isRateLimited(src, 'shop:buy', 500) then return end     -- max once per 500ms
 
-    -- 10. LOCK — prevent parallel races
+    -- 10. LOCK - prevent parallel races
     if locked[src] then return end
     locked[src] = true
 
@@ -100,7 +100,7 @@ local src = source
 if not src or src == 0 then return end
 ```
 
-`source = 0` is "the server itself" — useful for some internal things, but a **player triggering an event will always have a positive source ID**. If you see `0`, something weird is going on. Bail.
+`source = 0` is "the server itself" - useful for some internal things, but a **player triggering an event will always have a positive source ID**. If you see `0`, something weird is going on. Bail.
 
 ---
 
@@ -163,7 +163,7 @@ end)
 -- GOOD: server knows who they are from `source`
 RegisterNetEvent('transfer', function(toId, amount)
     local src = source                                         -- THIS is who fired the event
-    -- ↑ "fromId" is always src — never trust client to identify itself
+    -- ↑ "fromId" is always src - never trust client to identify itself
 end)
 ```
 
@@ -180,7 +180,7 @@ if player.PlayerData.job.name ~= 'police' then return end       -- must be polic
 if not IsPlayerAceAllowed(src, 'command.admin') then return end  -- must have ACE permission
 ```
 
-Client-side permission checks are UX — they hide buttons. **Server-side checks are security** — they actually stop the action.
+Client-side permission checks are UX - they hide buttons. **Server-side checks are security** - they actually stop the action.
 
 ---
 
@@ -207,7 +207,7 @@ if #(coords - Config.ShopCoords) > 5.0 then                     -- "#(a-b)" = di
 end
 ```
 
-This stops "use shop from anywhere" exploits. The `5.0` is meters — adjust per shop.
+This stops "use shop from anywhere" exploits. The `5.0` is meters - adjust per shop.
 
 ---
 
@@ -290,7 +290,7 @@ local function logSuspicious(src, event, reason)
 end
 ```
 
-For prod, write to a DB table or push to a Discord webhook (server-side only — never client-side).
+For prod, write to a DB table or push to a Discord webhook (server-side only - never client-side).
 
 ---
 
@@ -298,11 +298,11 @@ For prod, write to a DB table or push to a Discord webhook (server-side only —
 
 These keep showing up in leaked / open-source resources. If you see any of these patterns, fix them immediately:
 
-- **`RemoveItem()` accidentally calls `AddItem()`** — infinite item glitch (yes, really, common copy-paste bug)
-- **Job/gang boss check copied from another job** — anyone gets boss permissions on the wrong job
-- **Hardcoded Discord webhooks in client files** — players spam the webhook, Discord bans it
-- **Unvalidated XP / level / skill events** — client passes `level = 99`, server saves it
-- **Money sent as a client argument** — `TriggerServerEvent('reward', 9999999)` works because the server reads `amount` from the client
+- **`RemoveItem()` accidentally calls `AddItem()`** - infinite item glitch (yes, really, common copy-paste bug)
+- **Job/gang boss check copied from another job** - anyone gets boss permissions on the wrong job
+- **Hardcoded Discord webhooks in client files** - players spam the webhook, Discord bans it
+- **Unvalidated XP / level / skill events** - client passes `level = 99`, server saves it
+- **Money sent as a client argument** - `TriggerServerEvent('reward', 9999999)` works because the server reads `amount` from the client
 
 All caused by skipping the checklist.
 
@@ -346,11 +346,11 @@ If anything happens (money changes, items appear, errors flood console), you hav
 
 ## Sources
 
-- [Working With Events (official)](https://docs.fivem.net/docs/scripting-manual/working-with-events/) — securing events
+- [Working With Events (official)](https://docs.fivem.net/docs/scripting-manual/working-with-events/) - securing events
 - [RegisterNetEvent](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RegisterNetEvent/)
-- [GetPlayerIdentifierByType](https://docs.fivem.net/natives/?_0xA61C8FCDFF1206F4) — fetching license/steam/discord
-- [IsPlayerAceAllowed](https://docs.fivem.net/natives/?_0xDEDAE23D) — ACE permission check
-- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) — general principles
+- [GetPlayerIdentifierByType](https://docs.fivem.net/natives/?_0xA61C8FCDFF1206F4) - fetching license/steam/discord
+- [IsPlayerAceAllowed](https://docs.fivem.net/natives/?_0xDEDAE23D) - ACE permission check
+- [OWASP Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) - general principles
 
 ---
 
