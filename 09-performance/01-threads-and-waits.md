@@ -359,7 +359,7 @@ Need to do X?
 ## Sources
 
 - [FiveM Lua Runtime](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/) - `CreateThread`, `Wait`
-- [resmon and profiler](https://docs.fivem.net/docs/scripting-reference/profiler/) - performance tools
+- [Lua runtime overview (CreateThread, Wait, profiler entry points)](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/)
 - [ox_lib points (source)](https://github.com/communityox/ox_lib/tree/master/imports/points) - batched distance loop
 - [ox_lib zones](https://coxdocs.dev/ox_lib/Modules/Zones/Shared)
 - [FiveM Cookbook - performance](https://cookbook.fivem.net/) - community patterns

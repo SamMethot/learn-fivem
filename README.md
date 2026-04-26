@@ -177,7 +177,7 @@ This repo is **MIT licensed** ([LICENSE](LICENSE)) and PR-friendly. If you spot 
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules. Short version: keep the tone direct, keep examples runnable, no padding.
 
-Bugs / questions / feature requests → [open an issue](../../issues/new/choose).
+Bugs / questions / feature requests: [open an issue](https://github.com/SamMethot/learn-fivem/issues/new/choose).
 
 ---
 

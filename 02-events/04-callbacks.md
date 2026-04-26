@@ -285,7 +285,7 @@ Ask the server "am I allowed?" before doing the expensive UI work. Server gates,
 
 ## Sources
 
-- [ox_lib Callback module (docs)](https://coxdocs.dev/ox_lib/Modules/Callback) - official reference
+- [ox_lib Callback (server)](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Server) and [Callback (client)](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Client) - official reference
 - [ox_lib Callback source](https://github.com/communityox/ox_lib/tree/master/imports/callback) - read the implementation
 - [Working With Events](https://docs.fivem.net/docs/scripting-manual/working-with-events/) - events overview
 

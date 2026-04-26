@@ -249,7 +249,7 @@ Find a working pattern, adapt to your case.
 
 - [Native Reference (searchable)](https://docs.fivem.net/natives/) - official database
 - [Scripting Reference Overview](https://docs.fivem.net/docs/scripting-reference/)
-- [Streaming docs (assets)](https://docs.fivem.net/docs/scripting-manual/working-with-data-files/)
+- [Resource Manifest (data_file declarations)](https://docs.fivem.net/docs/scripting-reference/resource-manifest/resource-manifest/)
 - [VS Code cfxlua extension](https://marketplace.visualstudio.com/items?itemName=overextended.cfxlua-vscode) - autocomplete
 
 ---

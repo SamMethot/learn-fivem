@@ -414,7 +414,7 @@ Gate by distance, by visibility, by "am I involved". Idle work is a tax on the w
 
 ## Sources
 
-- [FiveM profiler docs](https://docs.fivem.net/docs/scripting-reference/profiler/)
+- [FiveM Lua runtime (profiler entry points)](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/)
 - [State Bags](https://docs.fivem.net/docs/scripting-manual/networking/state-bags/)
 - [FiveM Cookbook (performance)](https://cookbook.fivem.net/) - community patterns
 - [ox_lib points (source)](https://github.com/communityox/ox_lib/tree/master/imports/points)

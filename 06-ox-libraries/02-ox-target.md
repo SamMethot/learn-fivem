@@ -298,7 +298,7 @@ Without this, restarting the resource leaves duplicate options floating around u
 
 - [ox_target docs](https://coxdocs.dev/ox_target)
 - [ox_target GitHub](https://github.com/communityox/ox_target)
-- [Vehicle bone names](https://docs.fivem.net/docs/game-references/bones/) - full list
+- [Game references (vehicle bones, controls, etc.)](https://docs.fivem.net/docs/game-references/) - browse for full bone list
 
 ---
 

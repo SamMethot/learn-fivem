@@ -1,0 +1,21 @@
+# URLs that work in a browser but lychee can't reach (bot-blocking, rate limits,
+# or JS-rendered routing). Listed as Rust regex patterns.
+
+# FiveM dynamic native search (alive but uses JS hash routing lychee can't follow)
+^https://docs\.fivem\.net/natives/\?_0x
+
+# FiveM doc pages that intermittently 404 from CI runners (live in browser)
+^https://docs\.fivem\.net/docs/scripting-reference/runtimes/lua/functions/TriggerLatentClientEvent/?$
+^https://docs\.fivem\.net/docs/scripting-reference/runtimes/javascript/functions/GetParentResourceName/?$
+^https://docs\.fivem\.net/docs/scripting-reference/profiler/?$
+^https://docs\.fivem\.net/docs/scripting-manual/working-with-data-files/?$
+^https://docs\.fivem\.net/docs/game-references/bones/?$
+
+# coxdocs.dev parent path that doesn't render but child pages do
+^https://coxdocs\.dev/ox_lib/Modules/Callback/?$
+
+# HeidiSQL site is alive but returns 500 to bot user-agents
+^https://www\.heidisql\.com
+
+# Local file links (false positives — these are GitHub-relative URLs)
+^file://

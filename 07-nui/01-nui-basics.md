@@ -367,7 +367,7 @@ The UI element has `pointer-events: none` somewhere up the tree, OR the page isn
 - [SetNuiFocus](https://docs.fivem.net/natives/?_0x5B98AE30) - native reference
 - [SendNUIMessage](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/SendNUIMessage/)
 - [RegisterNUICallback](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/RegisterNUICallback/)
-- [GetParentResourceName](https://docs.fivem.net/docs/scripting-reference/runtimes/javascript/functions/GetParentResourceName/) - JS-side global
+- [JavaScript runtime reference](https://docs.fivem.net/docs/scripting-reference/runtimes/javascript/) - includes `GetParentResourceName` global
 
 ---
 

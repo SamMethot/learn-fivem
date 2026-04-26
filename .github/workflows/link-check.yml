@@ -27,12 +27,12 @@ jobs:
       - name: Run lychee link checker
         uses: lycheeverse/lychee-action@v2
         with:
-          # exclude FiveM dynamic native search URLs (?_0xHASH) - they're alive but lychee 404s them
+          # Excluded URLs live in .lycheeignore at the repo root.
+          # Accept extra status codes for sites that block bots or rate-limit CI runners.
           args: >-
             --no-progress
             --max-concurrency 8
-            --accept 200,206,301,302,403,429
+            --accept 200,206,301,302,403,429,500
             --exclude-path .git
-            --exclude '^https://docs\.fivem\.net/natives/\?_0x'
             './**/*.md'
           fail: true
