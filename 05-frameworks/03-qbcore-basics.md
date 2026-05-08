@@ -243,3 +243,5 @@ Never trust client-sent price, quantity, job grade, or item count.
 - [FiveM Scripting Docs](https://docs.fivem.net/docs/scripting-manual/)
 
 ---
+
+Next: [`06-ox-libraries/01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)
