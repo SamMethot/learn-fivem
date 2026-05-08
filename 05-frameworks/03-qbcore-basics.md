@@ -21,6 +21,9 @@ QBCore is built and maintained by the **QBCore Framework** community/team.
 - QBCore docs: [https://docs.qbcore.org/](https://docs.qbcore.org/)
 - QBCore GitHub org: [https://github.com/qbcore-framework](https://github.com/qbcore-framework)
 
+
+This lesson assumes you have the latest version of QBCore.
+
 ---
 
 ## Get Core Object And Player (Server Side)
