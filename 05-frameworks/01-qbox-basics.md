@@ -389,4 +389,4 @@ Client PlayerData is for display. **Authoritative checks happen server-side.** A
 
 ---
 
-Next folder: [`06-ox-libraries/`](../06-ox-libraries/) - start with [`01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)
+Next: [`05-frameworks/02-esx-basics.md`](02-esx-basics.md)

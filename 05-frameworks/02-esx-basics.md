@@ -316,3 +316,5 @@ Pick one UI style and stay consistent across your resources.
 - [FiveM Scripting Docs](https://docs.fivem.net/docs/scripting-manual/)
 
 ---
+
+Next: [`05-frameworks/03-qbcore-basics.md`](03-qbcore-basics.md)
