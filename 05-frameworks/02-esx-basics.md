@@ -53,10 +53,9 @@ Important compatibility note:
 - Even when it exists, treat it as legacy behavior, not your default API.
 - For new code, always use exports first.
 
-<details>
-<summary><strong>Legacy EssentialMode Setup (Open If This Matches Your Server)</strong></summary>
+### Legacy EssentialMode Setup (Open If This Matches Your Server)
 
-If your stack still depends on EssentialMode-style resources, your server is on a legacy path and should be upgraded.
+If your stack still depends on EssentialMode resources, your server is on a legacy path and should be upgraded.
 
 EssentialMode is outdated for modern FiveM stacks (latest release on the original repository: **May 2020**).
 
@@ -69,25 +68,15 @@ What this usually looks like:
 How to check if you have this legacy setup:
 
 1. Check `server.cfg` (and split cfg files) for `ensure essentialmode`, `ensure esplugin_mysql`, and older `es_*` resources.
-2. Search your Lua files for `TriggerEvent('esx:getSharedObject'`.
-3. Search your resources/manifests for `essentialmode`, `esplugin_mysql`, and `mysql-async` references.
+2. Search your resources/manifests for `essentialmode`, `esplugin_mysql`, and `mysql-async` references.
 
 If you find multiple hits, prioritize migration to current ESX Legacy immediately because this old stack has higher security and compatibility risk.
 
-How to check your ESX version:
+#### How to check your ESX version:
 
-1. Open `es_extended/fxmanifest.lua` and look for a version field.
-2. If `es_extended` is a git clone, run:
-   - `git -C resources/[esx]/es_extended tag --points-at HEAD`
-   - `git -C resources/[esx]/es_extended rev-parse --short HEAD`
-3. Check startup logs for the `es_extended` banner/version line.
-4. If no explicit version exists, infer from API style:
-   - Modern style: `exports['es_extended']:getSharedObject()`
-   - Legacy style: `TriggerEvent('esx:getSharedObject', ...)`
+Open `es_extended/fxmanifest.lua` and look for a version field.
 
 No clear version marker plus lots of legacy patterns usually means an old ESX build or a heavily modified fork.
-
-</details>
 
 ---
 
