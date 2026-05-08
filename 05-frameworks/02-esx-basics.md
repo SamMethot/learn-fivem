@@ -10,11 +10,84 @@ Think of it as the server's operating layer for gameplay logic: your scripts plu
 
 Like Qbox/QBCore, ESX owns the player model: identity, jobs, money/accounts, inventory hooks, and player lifecycle events.
 
-If your server runs:
-- **ESX** -> use `ESX.GetPlayerFromId(src)`
-- **Qbox/QBCore** -> use their own player objects and function names
+### What Makes ESX Different
 
-This lesson assumes ESX Legacy (`es_extended`) and Lua resources.
+- It has the longest legacy footprint in RP servers, so there are many existing ESX resources and tutorials.
+- It is account-oriented (`bank`, `money`, optionally `black_money`) with the `xPlayer` API style.
+- Compared to Qbox/QBCore, naming and event conventions differ, so copy-pasting framework code between them usually fails without adaptation.
+
+### Who Made It
+
+ESX started in the ESX community and is actively maintained in modern form by the **esx-framework** team.
+
+- ESX docs: [https://documentation.esx-framework.org/](https://documentation.esx-framework.org/)
+- ESX framework org: [https://github.com/esx-framework](https://github.com/esx-framework)
+
+This lesson assumes you have the latest version of ESX Legacy (`es_extended`) and Lua resources.
+
+### Shared Object Access: Export vs Event
+
+Use export access as your default in modern ESX Legacy:
+
+```lua
+local ESX = exports['es_extended']:getSharedObject()
+```
+
+Old scripts often use the event pattern:
+
+```lua
+TriggerEvent('esx:getSharedObject', function(obj)
+    ESX = obj
+end)
+```
+
+Why export is preferred:
+
+1. Clear dependency: you directly reference `es_extended`.
+2. Better reliability: export access is the standard pattern in modern ESX resources.
+3. Safer migration path: many servers block, remove, or no-op `esx:getSharedObject` to reduce legacy attack surface and avoid old resource assumptions.
+
+Important compatibility note:
+
+- Some `es_extended` versions and forks still provide the event for backward compatibility.
+- Even when it exists, treat it as legacy behavior, not your default API.
+- For new code, always use exports first.
+
+<details>
+<summary><strong>Legacy EssentialMode Setup (Open If This Matches Your Server)</strong></summary>
+
+If your stack still depends on EssentialMode-style resources, your server is on a legacy path and should be upgraded.
+
+EssentialMode is outdated for modern FiveM stacks (latest release on the original repository: **May 2020**).
+
+What this usually looks like:
+
+- Core resources built around `essentialmode` plus early ESX scripts.
+- Old dependencies such as `es_admin2`, `esplugin_mysql`, and `mysql-async`.
+- Many scripts relying on legacy globals/events instead of exports.
+
+How to check if you have this legacy setup:
+
+1. Check `server.cfg` (and split cfg files) for `ensure essentialmode`, `ensure esplugin_mysql`, and older `es_*` resources.
+2. Search your Lua files for `TriggerEvent('esx:getSharedObject'`.
+3. Search your resources/manifests for `essentialmode`, `esplugin_mysql`, and `mysql-async` references.
+
+If you find multiple hits, prioritize migration to current ESX Legacy immediately because this old stack has higher security and compatibility risk.
+
+How to check your ESX version:
+
+1. Open `es_extended/fxmanifest.lua` and look for a version field.
+2. If `es_extended` is a git clone, run:
+   - `git -C resources/[esx]/es_extended tag --points-at HEAD`
+   - `git -C resources/[esx]/es_extended rev-parse --short HEAD`
+3. Check startup logs for the `es_extended` banner/version line.
+4. If no explicit version exists, infer from API style:
+   - Modern style: `exports['es_extended']:getSharedObject()`
+   - Legacy style: `TriggerEvent('esx:getSharedObject', ...)`
+
+No clear version marker plus lots of legacy patterns usually means an old ESX build or a heavily modified fork.
+
+</details>
 
 ---
 
@@ -220,13 +293,6 @@ For large loops, avoid doing heavy DB work inside each iteration.
 ```lua
 -- ↓ classic ESX notify
 TriggerClientEvent('esx:showNotification', source, 'Purchase complete')
-
--- ↓ modern alternative with ox_lib (if installed)
-TriggerClientEvent('ox_lib:notify', source, {
-    title = 'Shop',
-    description = 'You bought bread',
-    type = 'success',
-})
 ```
 
 Pick one UI style and stay consistent across your resources.
@@ -257,6 +323,7 @@ Pick one UI style and stay consistent across your resources.
 
 - [ESX Documentation](https://documentation.esx-framework.org/)
 - [es_extended (GitHub)](https://github.com/esx-framework/esx_core/tree/main/%5Besx%5D/es_extended)
+- [esx-framework (GitHub org)](https://github.com/esx-framework)
 - [FiveM Scripting Docs](https://docs.fivem.net/docs/scripting-manual/)
 
 ---
