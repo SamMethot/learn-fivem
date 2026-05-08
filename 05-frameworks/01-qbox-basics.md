@@ -4,6 +4,8 @@
 
 A **framework** in FiveM is the resource that owns "what is a player". It defines the player object, jobs, gangs, money, inventory hooks, character creation, and the events that fire on login/logout.
 
+Think of it as the server's operating layer for gameplay logic: your scripts plug into the framework instead of reinventing player/account/job systems every time.
+
 **Qbox (`qbx_core`)** is the most active framework in the FiveM scene right now. It's a modern fork of QBCore - same shape, same concepts, slightly cleaner API.
 
 If your server runs:
