@@ -8,12 +8,22 @@ Think of it as the server's operating layer for gameplay logic: your scripts plu
 
 **Qbox (`qbx_core`)** is the most active framework in the FiveM scene right now. It's a modern fork of QBCore - same shape, same concepts, slightly cleaner API.
 
-If your server runs:
-- **Qbox** → use `exports.qbx_core:GetPlayer(src)`
-- **QBCore** (older) → use `QBCore.Functions.GetPlayer(src)` (Qbox ships a bridge so old code still works)
-- **ESX** → totally different API, this lesson doesn't cover it
+### What Makes Qbox Different
 
-This lesson assumes Qbox.
+- It is a modern fork of QBCore with cleaner internals and active maintenance.
+- It keeps a compatibility bridge for many QBCore-style APIs/events, so older resources usually need fewer rewrites.
+- It is commonly paired with the ox ecosystem (`ox_lib`, `ox_inventory`, `ox_target`) in newer stacks.
+
+### Who Made It
+
+Qbox is built and maintained by the **Qbox Project** community/team.
+
+- Qbox docs: [https://docs.qbox.re/](https://docs.qbox.re/)
+- Qbox project: [https://github.com/Qbox-project](https://github.com/Qbox-project)
+
+Qbox came from the QBCore ecosystem, so you'll still see shared patterns and names.
+
+This lesson assumes the latest version of Qbox.
 
 ---
 
@@ -373,6 +383,7 @@ Client PlayerData is for display. **Authoritative checks happen server-side.** A
 - [Qbox Docs](https://docs.qbox.re/)
 - [qbx_core GitHub](https://github.com/Qbox-project/qbx_core) - read the source
 - [QBCore Docs (legacy)](https://docs.qbcore.org/) - same shape, older API
+- [Qbox Project (GitHub org)](https://github.com/Qbox-project)
 - [GetPlayerIdentifierByType native](https://docs.fivem.net/natives/?_0xA61C8FCDFF1206F4)
 - [Resource ACE (permissions)](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#permissions)
 
