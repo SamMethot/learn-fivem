@@ -19,3 +19,6 @@
 
 # Local file links (false positives — these are GitHub-relative URLs)
 ^file://
+
+# Link for local developement because PR
+https://sammethot.github.io/learn-fivem
