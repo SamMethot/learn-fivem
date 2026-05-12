@@ -137,16 +137,20 @@ RegisterNetEvent('QBCore:Client:OnMoneyChange', function(type, amount, isRemoved
 end)
 ```
 
-Qbox keeps the old QBCore event names for compatibility.
+Qbox keeps the old QBCore event names for compatibility. For "player loaded" keep using `QBCore:Client:OnPlayerLoaded` above - Qbox hasn't shipped a renamed replacement.
 
-Newer Qbox-specific events:
+Qbox-native events you can also listen to:
 
 ```lua
-RegisterNetEvent('qbx_core:client:playerLoaded', function(data) end)
+-- ↓ fires when the player logs out / disconnects
 RegisterNetEvent('qbx_core:client:playerLoggedOut', function() end)
-```
 
-Use the newer ones when available.
+-- ↓ fires when a metadata key changes. key, previous value, new value
+RegisterNetEvent('qbx_core:client:onSetMetaData', function(key, oldVal, newVal) end)
+
+-- ↓ fires when a job/gang grade is updated
+RegisterNetEvent('qbx_core:client:onGroupUpdate', function(group, grade) end)
+```
 
 ---
 
@@ -284,12 +288,18 @@ lib.notify({
 
 ## Commands With Permission
 
+Qbox registers commands through **ox_lib's `lib.addCommand`**, not a `qbx_core` export:
+
 ```lua
--- ↓ Qbox helper: register a command, last arg is the required permission group
-exports.qbx_core:CreateCommand('adminpanel', 'Open admin panel', {}, false, function(source, args)
-    -- ↑ source = who ran it, args = arg table
+-- ↓ name, options table, handler
+lib.addCommand('adminpanel', {
+    help = 'Open admin panel',
+    restricted = 'group.admin',                                  -- ACE group required to run it
+    params = {},                                                  -- positional args (none here)
+}, function(source, args, raw)
+    -- ↑ source = who ran it, args = parsed params, raw = full string
     -- command body
-end, 'admin')                                                    -- requires the 'admin' group
+end)
 ```
 
 Or use FiveM's `RegisterCommand` with **ACE** (Access Control Entries) for permissions:

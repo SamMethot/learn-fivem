@@ -311,7 +311,7 @@ Pick one UI style and stay consistent across your resources.
 ## Sources
 
 - [ESX Documentation](https://documentation.esx-framework.org/)
-- [es_extended (GitHub)](https://github.com/esx-framework/esx_core/tree/main/%5Besx%5D/es_extended)
+- [es_extended (GitHub)](https://github.com/esx-framework/esx_core/tree/main/%5Bcore%5D/es_extended)
 - [esx-framework (GitHub org)](https://github.com/esx-framework)
 - [FiveM Scripting Docs](https://docs.fivem.net/docs/scripting-manual/)
 
