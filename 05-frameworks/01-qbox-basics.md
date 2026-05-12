@@ -4,14 +4,26 @@
 
 A **framework** in FiveM is the resource that owns "what is a player". It defines the player object, jobs, gangs, money, inventory hooks, character creation, and the events that fire on login/logout.
 
+Think of it as the server's operating layer for gameplay logic: your scripts plug into the framework instead of reinventing player/account/job systems every time.
+
 **Qbox (`qbx_core`)** is the most active framework in the FiveM scene right now. It's a modern fork of QBCore - same shape, same concepts, slightly cleaner API.
 
-If your server runs:
-- **Qbox** → use `exports.qbx_core:GetPlayer(src)`
-- **QBCore** (older) → use `QBCore.Functions.GetPlayer(src)` (Qbox ships a bridge so old code still works)
-- **ESX** → totally different API, this lesson doesn't cover it
+### What Makes Qbox Different
 
-This lesson assumes Qbox.
+- It is a modern fork of QBCore with cleaner internals and active maintenance.
+- It keeps a compatibility bridge for many QBCore-style APIs/events, so older resources usually need fewer rewrites.
+- It is commonly paired with the ox ecosystem (`ox_lib`, `ox_inventory`, `ox_target`) in newer stacks.
+
+### Who Made It
+
+Qbox is built and maintained by the **Qbox Project** community/team.
+
+- Qbox docs: [https://docs.qbox.re/](https://docs.qbox.re/)
+- Qbox project: [https://github.com/Qbox-project](https://github.com/Qbox-project)
+
+Qbox came from the QBCore ecosystem, so you'll still see shared patterns and names.
+
+This lesson assumes the latest version of Qbox.
 
 ---
 
@@ -125,16 +137,20 @@ RegisterNetEvent('QBCore:Client:OnMoneyChange', function(type, amount, isRemoved
 end)
 ```
 
-Qbox keeps the old QBCore event names for compatibility.
+Qbox keeps the old QBCore event names for compatibility. For "player loaded" keep using `QBCore:Client:OnPlayerLoaded` above - Qbox hasn't shipped a renamed replacement.
 
-Newer Qbox-specific events:
+Qbox-native events you can also listen to:
 
 ```lua
-RegisterNetEvent('qbx_core:client:playerLoaded', function(data) end)
+-- ↓ fires when the player logs out / disconnects
 RegisterNetEvent('qbx_core:client:playerLoggedOut', function() end)
-```
 
-Use the newer ones when available.
+-- ↓ fires when a metadata key changes. key, previous value, new value
+RegisterNetEvent('qbx_core:client:onSetMetaData', function(key, oldVal, newVal) end)
+
+-- ↓ fires when a job/gang grade is updated
+RegisterNetEvent('qbx_core:client:onGroupUpdate', function(group, grade) end)
+```
 
 ---
 
@@ -272,12 +288,18 @@ lib.notify({
 
 ## Commands With Permission
 
+Qbox registers commands through **ox_lib's `lib.addCommand`**, not a `qbx_core` export:
+
 ```lua
--- ↓ Qbox helper: register a command, last arg is the required permission group
-exports.qbx_core:CreateCommand('adminpanel', 'Open admin panel', {}, false, function(source, args)
-    -- ↑ source = who ran it, args = arg table
+-- ↓ name, options table, handler
+lib.addCommand('adminpanel', {
+    help = 'Open admin panel',
+    restricted = 'group.admin',                                  -- ACE group required to run it
+    params = {},                                                  -- positional args (none here)
+}, function(source, args, raw)
+    -- ↑ source = who ran it, args = parsed params, raw = full string
     -- command body
-end, 'admin')                                                    -- requires the 'admin' group
+end)
 ```
 
 Or use FiveM's `RegisterCommand` with **ACE** (Access Control Entries) for permissions:
@@ -371,9 +393,10 @@ Client PlayerData is for display. **Authoritative checks happen server-side.** A
 - [Qbox Docs](https://docs.qbox.re/)
 - [qbx_core GitHub](https://github.com/Qbox-project/qbx_core) - read the source
 - [QBCore Docs (legacy)](https://docs.qbcore.org/) - same shape, older API
+- [Qbox Project (GitHub org)](https://github.com/Qbox-project)
 - [GetPlayerIdentifierByType native](https://docs.fivem.net/natives/?_0xA61C8FCDFF1206F4)
 - [Resource ACE (permissions)](https://docs.fivem.net/docs/server-manual/setting-up-a-server/#permissions)
 
 ---
 
-Next folder: [`06-ox-libraries/`](../06-ox-libraries/) - start with [`01-ox-lib.md`](../06-ox-libraries/01-ox-lib.md)
+Next: [`05-frameworks/02-esx-basics.md`](02-esx-basics.md)

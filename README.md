@@ -57,7 +57,7 @@ VS Code extensions worth installing day one:
 02-events       → how scripts talk to each other
 03-natives      → the GTA V API
 04-database     → MySQL with oxmysql
-05-frameworks   → Qbox / QBCore basics
+05-frameworks   → Qbox / QBCore / ESX basics
 06-ox-libraries → ox_lib, ox_target, ox_inventory
 07-nui          → UI (HTML/CSS/JS, then React)
 08-security     → don't get exploited

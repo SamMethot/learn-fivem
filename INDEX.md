@@ -21,17 +21,19 @@ Read in order. ~2-4 hours of reading + as long as you want for the projects.
 11. [`04-database/01-oxmysql-basics.md`](04-database/01-oxmysql-basics.md) - talk to MySQL
 12. [`04-database/02-queries-and-security.md`](04-database/02-queries-and-security.md) - don't get SQL-injected
 13. [`05-frameworks/01-qbox-basics.md`](05-frameworks/01-qbox-basics.md) - player object, jobs, money
-14. [`06-ox-libraries/01-ox-lib.md`](06-ox-libraries/01-ox-lib.md) - the swiss-army library
-15. [`06-ox-libraries/02-ox-target.md`](06-ox-libraries/02-ox-target.md) - third-eye targeting
-16. [`06-ox-libraries/03-inventories.md`](06-ox-libraries/03-inventories.md) - items
-17. [`07-nui/01-nui-basics.md`](07-nui/01-nui-basics.md) - HTML UI inside the game
-18. [`07-nui/02-react-nui.md`](07-nui/02-react-nui.md) - production NUI with React
-19. [`08-security/01-security-checklist.md`](08-security/01-security-checklist.md) - the audit list
-20. [`09-performance/01-threads-and-waits.md`](09-performance/01-threads-and-waits.md) - don't tank FPS
-21. [`09-performance/02-optimization-patterns.md`](09-performance/02-optimization-patterns.md) - make it fast
-22. [`10-first-projects/01-hello-resource.md`](10-first-projects/01-hello-resource.md) - your first resource
-23. [`10-first-projects/02-shop.md`](10-first-projects/02-shop.md) - full shop with security
-24. [`10-first-projects/03-nui-menu.md`](10-first-projects/03-nui-menu.md) - HTML menu
+14. [`05-frameworks/02-esx-basics.md`](05-frameworks/02-esx-basics.md) - xPlayer, money accounts, jobs
+15. [`05-frameworks/03-qbcore-basics.md`](05-frameworks/03-qbcore-basics.md) - core object, PlayerData, jobs, money
+16. [`06-ox-libraries/01-ox-lib.md`](06-ox-libraries/01-ox-lib.md) - the swiss-army library
+17. [`06-ox-libraries/02-ox-target.md`](06-ox-libraries/02-ox-target.md) - third-eye targeting
+18. [`06-ox-libraries/03-inventories.md`](06-ox-libraries/03-inventories.md) - items
+19. [`07-nui/01-nui-basics.md`](07-nui/01-nui-basics.md) - HTML UI inside the game
+20. [`07-nui/02-react-nui.md`](07-nui/02-react-nui.md) - production NUI with React
+21. [`08-security/01-security-checklist.md`](08-security/01-security-checklist.md) - the audit list
+22. [`09-performance/01-threads-and-waits.md`](09-performance/01-threads-and-waits.md) - don't tank FPS
+23. [`09-performance/02-optimization-patterns.md`](09-performance/02-optimization-patterns.md) - make it fast
+24. [`10-first-projects/01-hello-resource.md`](10-first-projects/01-hello-resource.md) - your first resource
+25. [`10-first-projects/02-shop.md`](10-first-projects/02-shop.md) - full shop with security
+26. [`10-first-projects/03-nui-menu.md`](10-first-projects/03-nui-menu.md) - HTML menu
 
 ---
 
@@ -98,9 +100,11 @@ MySQL via oxmysql. Query patterns, parameterization, race-condition prevention.
 - [`02-queries-and-security.md`](04-database/02-queries-and-security.md)
 
 ### [05-frameworks](05-frameworks/)
-Qbox: player object, jobs, gangs, money, metadata.
+Qbox + ESX + QBCore: player object, jobs, money/accounts, metadata.
 
 - [`01-qbox-basics.md`](05-frameworks/01-qbox-basics.md)
+- [`02-esx-basics.md`](05-frameworks/02-esx-basics.md)
+- [`03-qbcore-basics.md`](05-frameworks/03-qbcore-basics.md)
 
 ### [06-ox-libraries](06-ox-libraries/)
 The libraries 90% of modern resources use.
