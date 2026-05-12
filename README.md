@@ -2,9 +2,11 @@
 
 > Beginner-to-shipping FiveM coding course. Built by a working FiveM dev. No fluff, no padding, every Lua line explained.
 
-If you've ever opened a FiveM resource on GitHub and felt lost - this fixes that.
+**📖 Read it as a website → [sammethot.github.io/learn-fivem](https://sammethot.github.io/learn-fivem)**
 
-Prefer reading it as a Website? Explore the full course website here: https://sammethot.github.io/learn-fivem
+Searchable, themed, with a navigation tree and copy-paste code buttons. Same content, nicer to read.
+
+If you've ever opened a FiveM resource on GitHub and felt lost - this fixes that.
 
 ---
 
