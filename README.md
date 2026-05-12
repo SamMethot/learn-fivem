@@ -4,6 +4,8 @@
 
 If you've ever opened a FiveM resource on GitHub and felt lost - this fixes that.
 
+Prefer reading it as a Website? Explore the full course website here: https://sammethot.github.io/learn-fivem
+
 ---
 
 ## Who This Is For

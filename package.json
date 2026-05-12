@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@docmd/core": "^0.7.9"
+  },
+  "scripts": {
+    "predev": "node -e \"require('fs').copyFileSync('README.md','index.md')\"",
+    "dev": "docmd dev",
+    "prebuild": "node -e \"require('fs').copyFileSync('README.md','index.md')\"",
+    "build": "docmd build"
+  }
+}
