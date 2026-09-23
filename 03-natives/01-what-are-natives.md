@@ -105,8 +105,9 @@ When the native signature says `Hash modelHash`, pass a hash. When it says `char
 ---
 
 ## The Request / Has / Use Pattern
+GTA V has a massive open world and cannot hold every vehicle, weapon, and animation in RAM at the same time. Instead, assets exist on the disk and stream into memory strictly on demand. If you tell the engine to spawn a vehicle before its 3D model has fully loaded into RAM, the script will error out.
 
-Models, anims, particle effects, audio banks - all stream into memory on demand. The pattern is always:
+The pattern is always:
 
 ```lua
 local model = `adder`                                              -- compute hash at load time
